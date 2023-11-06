@@ -1,0 +1,24 @@
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 1.6rem;
+  border: 0.1rem solid var(--stroke-light, #dee2e6);
+  background: var(--gray-white, #fff);
+  padding: 3.2rem 4rem;
+  background-color: rgba(255, 255, 255, 1);
+}

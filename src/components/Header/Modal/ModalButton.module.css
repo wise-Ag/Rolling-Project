@@ -1,0 +1,8 @@
+.root {
+  border-radius: 0.6rem;
+  color: white;
+  padding: 0.7rem 1.6rem;
+}
+.purple {
+  background: var(--purple-600, #9935ff);
+}
