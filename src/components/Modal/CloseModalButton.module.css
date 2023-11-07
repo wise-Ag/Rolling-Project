@@ -1,0 +1,9 @@
+.root {
+  padding: 0.7rem 1.6rem;
+  width: 12rem;
+  background: var(--purple-600, #9935ff);
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: white;
+  border-radius: 0.6rem;
+}

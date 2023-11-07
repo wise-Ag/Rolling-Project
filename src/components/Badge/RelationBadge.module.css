@@ -1,8 +1,9 @@
 .root {
+  display: inline-flex; /*상위 displa:flex에도 크기가 늘어나지 않게 함*/
   padding: 0 0.8rem;
-  border-radius: 0.4rem;
-  line-height: 2rem;
   font-size: 1.4rem;
+  line-height: 2rem;
+  border-radius: 0.4rem;
 }
 .orange {
   background: var(--orange-100, #fff0d6);
