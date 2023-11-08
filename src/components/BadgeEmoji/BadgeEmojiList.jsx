@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
-import styles from "./BadgeEmojiList.module.css";
-import BadgeEmoji from "./BadgeEmoji";
-import arrowDownImage from "../../assets/images/arrowDown.svg";
 
+import styles from "./BadgeEmojiList.module.css";
+
+import BadgeEmoji from "./BadgeEmoji";
+import arrowDownImage from "../../assets/images/icons/arrowDownIcon.svg";
+
+/**
+ * 뱃지 이모지 목록을 나타내는 컴포넌트.
+ * @param {Object} props - 컴포넌트에 전달되는 속성(props) 객체.
+ * @param {Object[]} props.emojis - 이모지 데이터의 배열.
+ * @returns {JSX.Element} - 뱃지 이모지 목록 컴포넌트의 JSX 엘리먼트.
+ */
 const BadgeEmojiList = ({ emojis }) => {
   const [emojiData, setEmojiData] = useState([]);
   const [isButton, setIsButton] = useState(false);

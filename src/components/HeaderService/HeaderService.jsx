@@ -1,34 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./HeaderService.module.css";
 
 import BadgeEmojiList from "../BadgeEmoji/BadgeEmojiList";
 import EmojiPickerPopover from "../EmojiPickerPopover/EmojiPickerPopover";
 import RollingPaperInfo from "../RollingPaperInfo/RollingPaperInfo";
-import getEmoji from "../../apis/getEmoji";
-import postEmoji from "../../apis/postEmoji";
+import postRecipientReaction from "../../apis/postRecipientReaction";
+import getRecipientReactions from "./../../apis/getRecipientReactions";
+import useAsync from "../../hooks/useAsync";
+import shareImage from "../../assets/images/icons/shareIcon.svg";
+import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
-const HeaderService = ({ recipientId, recipientName, writerCount, profileImageURL }) => {
+/**
+ * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
+ * @param {Object} props - 컴포넌트에 전달되는 속성(props) 객체.
+ * @param {string} props.recipientId - 수신자의 고유 식별자.
+ * @param {string} props.recipientName - 수신자의 이름.
+ * @param {number} props.writerCount - 작성자 수.
+ * @param {string[]} props.profileImageURLs - 프로필 이미지 URL 목록. (예시: ["example/profileImage01.png", "example/profileImage02.png", "example/profileImage03.png"])
+ * @returns {JSX.Element} - 헤더 서비스 컴포넌트의 JSX 엘리먼트.
+ */
+const HeaderService = ({ recipientId, recipientName, messageCount, profileImageURLs }) => {
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
+  const { wrappedFunction: getEmojiAsync } = useAsync(getRecipientReactions);
+  const { wrappedFunction: postEmojiAsync } = useAsync(postRecipientReaction);
 
-  const fetchEmojiData = async () => {
-    try {
-      const response = await getEmoji(recipientId);
+  const handleGetEmoji = async () => {
+    const response = await getEmojiAsync({ recipientId, limit: "8" });
 
-      if (response.result.results) {
-        setEmojiData(response.result.results.map((value) => ({ emoji: value.emoji, count: value.count })));
-      }
-    } catch (error) {
-      console.error("Error fetching emoji data:", error);
+    if (response.result.results) {
+      setEmojiData(response.result.results.map((value) => ({ emoji: value.emoji, count: value.count })));
     }
   };
 
   const handleEmojiClick = async (emoji) => {
     try {
-      console.log(emoji.emoji);
-      await postEmoji(recipientId, emoji.emoji);
-      fetchEmojiData();
+      await postEmojiAsync({ recipientId, emoji: emoji.emoji });
     } catch (error) {
       console.error("Error posting emoji:", error);
     }
@@ -38,11 +46,17 @@ const HeaderService = ({ recipientId, recipientName, writerCount, profileImageUR
     setSharePopover(!isSharePopover);
   };
 
+  useEffect(() => {
+    handleGetEmoji();
+  }, [emojiData]);
+
   return (
     <div className={styles.headerService}>
       <div className={styles.container}>
         <div className={styles.rollingPaperInfocontainer}>
-          <RollingPaperInfo recipientName={recipientName} writerCount={writerCount} profileImageURL={profileImageURL} />
+          <RollingPaperInfo recipientName={recipientName}>
+            <ProfileInfo messageCount={messageCount} profileImageURLs={profileImageURLs} />
+          </RollingPaperInfo>
         </div>
         <div className={styles.utilsConainer}>
           <div className={styles.verticalLineWrapper}>
@@ -54,7 +68,7 @@ const HeaderService = ({ recipientId, recipientName, writerCount, profileImageUR
             <div className={styles.verticalLine} />
             <div className={styles.shareButtonContainer}>
               <button className={styles.shareButton} onClick={handleShareClick}>
-                공유{/* 버튼 컴포넌트로 교체해야함 */}
+                <img src={shareImage} alt="공유 이미지" />
               </button>
               {isSharePopover && (
                 <div className={styles.sharePopover}>

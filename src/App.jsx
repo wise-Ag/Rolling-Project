@@ -5,7 +5,7 @@ import HeaderService from "./components/HeaderService/HeaderService";
 const App = () => {
   return (
     <>
-      <Header>{/* 버튼 컴포넌트 받아야함 */}</Header>
+      <Header button={<button>테스트 버튼</button> /* 버튼 컴포넌트 받아야함 */} />
       <HeaderService
         recipientId="20"
         recipientName={"테스트 입니다."}

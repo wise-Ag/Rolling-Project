@@ -57,6 +57,10 @@
 }
 
 .shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.6rem;
   border: 0.1rem solid var(--gray-300, #ccc);
   width: 5.6rem;
   height: 3.6rem;
