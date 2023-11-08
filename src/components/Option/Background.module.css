@@ -1,0 +1,31 @@
+.container {
+  display: inline-flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.colorBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  width: 168px;
+  height: 168px;
+  cursor: pointer;
+}
+
+.beige {
+  background-color: #ffe2ad;
+}
+
+.blue {
+  background-color: #b1e4ff;
+}
+
+.purple {
+  background-color: #ecd9ff;
+}
+
+.green {
+  background-color: #d0f5c3;
+}
