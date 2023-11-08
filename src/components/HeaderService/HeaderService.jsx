@@ -26,17 +26,22 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
   const { wrappedFunction: getEmojiAsync } = useAsync(getRecipientReactions);
   const { wrappedFunction: postEmojiAsync } = useAsync(postRecipientReaction);
 
-  const handleGetEmoji = async () => {
-    const response = await getEmojiAsync({ recipientId, limit: "8" });
+  const updateEmojiData = async () => {
+    try {
+      const response = await getEmojiAsync({ recipientId, limit: "8" });
 
-    if (response.result.results) {
-      setEmojiData(response.result.results.map((value) => ({ emoji: value.emoji, count: value.count })));
+      if (response.result.results) {
+        setEmojiData(() => response.result.results.map((value) => ({ emoji: value.emoji, count: value.count })));
+      }
+    } catch (error) {
+      console.error("Error updating emoji data:", error);
     }
   };
 
   const handleEmojiClick = async (emoji) => {
     try {
       await postEmojiAsync({ recipientId, emoji: emoji.emoji });
+      updateEmojiData();
     } catch (error) {
       console.error("Error posting emoji:", error);
     }
@@ -47,8 +52,8 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
   };
 
   useEffect(() => {
-    handleGetEmoji();
-  }, [emojiData]);
+    updateEmojiData();
+  }, []);
 
   return (
     <div className={styles.headerService}>
