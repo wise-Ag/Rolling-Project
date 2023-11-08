@@ -1,21 +1,11 @@
 import { useCallback, useState } from "react";
 
 /**
- * 비동기 함수를 처리하는 React Custom Hook입니다.
- *
- * @param {function} asyncFunction - 비동기 함수입니다.
- * @returns {object} - `status` 및 `wrappedFunction`을 포함하는 객체를 반환합니다.
- * @property {boolean} pending - 현재 비동기 함수가 실행 중인지 여부를 나타내는 불리언 값입니다.
- * @property {function} wrappedFunction - `asyncFunction`을 감싸고, 실행 중에 `status` 값을 설정하고 비동기 함수의 결과를 반환하는 함수입니다.
- *
- * @example
- * const fetchData = async () => {
- *   // 비동기 작업 수행
- * };
- *
- * const { status, wrappedFunction } = useAsync(fetchData);
- *
- * // wrappedFunction을 사용하여 fetchData를 실행하고, status 값을 모니터링할 수 있습니다.
+ * 비동기 함수를 처리하는 커스텀 훅.
+ * @param {Function} asyncFunction - 비동기 함수.
+ * @returns {Object} - 상태 및 래핑된 비동기 함수를 반환하는 객체.
+ * @property {boolean} status - 비동기 함수 실행 상태를 나타내는 상태 값. true는 실행 중, false는 비실행 상태.
+ * @property {Function} wrappedFunction - 비동기 함수를 감싼 함수. 비동기 함수를 실행할 때 이 함수를 호출하면 실행 상태를 관리합니다.
  */
 const useAsync = (asyncFunction) => {
   const [status, setStatus] = useState(false);
