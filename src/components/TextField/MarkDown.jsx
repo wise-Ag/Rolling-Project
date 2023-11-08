@@ -5,7 +5,7 @@ import { Editor } from '@toast-ui/react-editor';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styles from '../TextField/MarkDown.module.css';
 
-export const MarkDown = () => (
+const MarkDown = () => (
   <div className={styles.container}>
     <Editor
       initialValue='hello react editor world!'
@@ -17,3 +17,5 @@ export const MarkDown = () => (
     />
   </div>
 );
+
+export default MarkDown;
