@@ -1,9 +1,9 @@
-const APIpoint = 'https://rolling-api.vercel.app/';
+const BASE_URL = "https://rolling-api.vercel.app";
 
-async function requestAPI(url, option) {
-  const response = await fetch(`${APIpoint}${url}`, option);
+const requestAPI = async (url, option) => {
+  const response = await fetch(`${BASE_URL}${url}`, option);
   const result = await response.json();
   return { response, result };
-}
+};
 
 export default requestAPI;
