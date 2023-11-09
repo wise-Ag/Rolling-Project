@@ -1,6 +1,6 @@
 .container {
   display: inline-flex;
-  gap: 16px;
+  gap: 1.6rem;
   align-items: flex-start;
 }
 
@@ -8,9 +8,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 16px;
-  width: 168px;
-  height: 168px;
+  margin: 1.6rem;
+  width: 16.8rem;
+  height: 16.8rem;
   cursor: pointer;
 }
 
