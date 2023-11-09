@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import style from "./Toast.module.css";
-import checkIcon from "./check.svg";
-import closeIcon from "./close.svg";
+import checkImg from "../../assets/images/checkImg.svg"
+import closeIcon from "../../assets/images/icons/closeIcon.svg";
 import { ToastContext } from "../Modal/ModalTest";
 const Toast = ({ children }) => {
   const closeToast = useContext(ToastContext);
@@ -11,7 +11,7 @@ const Toast = ({ children }) => {
   return (
     <div className={style.root}>
       <div className={style.text}>
-        <img src={checkIcon} alt="checked" /> {children}
+        <img src={checkImg} alt="checked" /> {children}
       </div>
       <button onClick={handleCloseToastClick}>
         <img src={closeIcon} alt="close" />
