@@ -3,9 +3,9 @@ import Header from "../components/Header/Header";
 import HeaderService from "../components/HeaderService/HeaderService";
 import getRecipientRead from "../apis/getRecipientRead";
 import { useAsync } from "../hooks/useAsync";
-import CardContainer from "../components/Card/CardContainer/CardContainer";
 import style from "./PostPage.module.css";
 import clsx from "clsx";
+import Cards from "../components/Cards/Cards";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -45,7 +45,7 @@ const PostPage = () => {
         })}
         style={background}
       >
-        <CardContainer />
+        <Cards />
       </div>
     </div>
   );

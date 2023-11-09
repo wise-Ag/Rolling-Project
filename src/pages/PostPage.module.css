@@ -3,10 +3,16 @@
   justify-content: center;
   padding-top: 12rem;
   padding-bottom: 12rem;
-  height: 100vh;
-  background-color: var(--purple-200);
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  @media (max-width: 1248px) {
+    padding-right: 2.4rem;
+    padding-left: 2.4rem;
+  }
+  @media (max-width: 767px) {
+    padding: 2.4rem 2rem;
+  }
 }
 
 .purple {
