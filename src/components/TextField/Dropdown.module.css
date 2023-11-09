@@ -19,11 +19,15 @@
 
 .ul__open {
   margin-top: 0.2rem;
+  border: 0.1rem solid var(--gray-300, #ccc);
+  box-shadow: 0rem 0.2rem 1.2rem 0rem rgba(0, 0, 0, 0.08);
   overflow-y: auto;
   width: 32rem;
   height: 30rem;
+  background: var(--white, #fff);
   background-color: white;
   color: black;
+  border-radius: 0.8rem;
 }
 
 .ul__close {
