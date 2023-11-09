@@ -17,7 +17,7 @@ body {
   height: 5rem;
   background-color: white;
   color: black;
-  border-radius: 0.25px;
+  border-radius: 2.5px;
 }
 
 .ul__open {
@@ -30,7 +30,7 @@ body {
 }
 
 .ul__close {
-  margin-top: 2rem;
+  margin-top: 0.2rem;
   overflow-y: auto;
   width: 32rem;
   height: 0rem;
@@ -40,7 +40,7 @@ body {
 
 .li {
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 10px;
 }
 
 .li:hover {
