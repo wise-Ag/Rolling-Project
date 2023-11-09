@@ -30,3 +30,10 @@
 .green {
   background-color: #d0f5c3;
 }
+
+.image {
+  width: 4.4rem;
+  height: 4.4rem;
+  background-color: #555555;
+  border-radius: 50%;
+}

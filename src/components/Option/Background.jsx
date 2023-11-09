@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Background.module.css';
+import checkIcon from '../../assets/images/icons/checkIcon.svg';
 
 const colors = ['beige', 'blue', 'purple', 'green'];
 
@@ -18,7 +19,9 @@ const Background = () => {
           onClick={() => handleClickColor(color)}
           className={`${styles.colorBox} ${styles[color]}`}
         >
-          {selectedColor === color && <p>Selected</p>}
+          {selectedColor === color && (
+            <img src={checkIcon} alt={checkIcon} className={styles.image} />
+          )}
         </div>
       ))}
       <p>Selected color: {selectedColor}</p>
