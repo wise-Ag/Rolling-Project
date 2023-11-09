@@ -23,7 +23,7 @@ const BadgeEmojiList = ({ emojis }) => {
   };
 
   useEffect(() => {
-    setEmojiData([emojis.slice(0, 3), emojis.slice(0, 8)]);
+    setEmojiData([emojis.slice(0, 3), emojis.slice(0, 6)]);
   }, [emojis]);
 
   return (
