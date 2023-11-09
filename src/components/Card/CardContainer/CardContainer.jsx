@@ -7,14 +7,14 @@ const CardContainer = () => {
   const { data } = useGetMessage();
 
   return (
-    <div>
-      {data?.map((item) => {
-        return <CardBody key={item.id} item={item} />;
-      })}
+    <>
       <Card>
         <CardButtonImage />
       </Card>
-    </div>
+      {data?.map((item) => {
+        return <CardBody key={item.id} item={item} />;
+      })}
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import style from "./CardButtonImage.module.css";
-import plusbutton from "../../../assets/images/plusbutton.svg";
+import plusbutton from "../../../assets/images/icons/plusbutton.svg";
 
 const CardButtonImage = () => {
   return (

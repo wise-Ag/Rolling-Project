@@ -8,15 +8,19 @@ import { API_ENDPOINTS } from "../apis/config";
 
 // const url = API_ENDPOINTS.recipients.getRecipientMessages;
 // const url = API_ENDPOINTS.baseUrl + API_ENDPOINTS.recipients.getRecipient;
-const base = API_ENDPOINTS.baseUrl;
+// const base = API_ENDPOINTS.baseUrl;
 const end = API_ENDPOINTS.recipients.listRecipientMessages;
-const url = base + end(1);
-
+const endpoint = end(1);
+// const endpoint = `/1-6/recipients/1/messages/`;
+// console.log("url",url)
 // console.log(API_ENDPOINTS.baseUrl + "");
 
 const getData = async () => {
-  const { response, result } = await requestAPI(url, {
-    method: "GET",
+  const { response, result } = await requestAPI({
+    endpoint,
+    option: {
+      method: "GET",
+    },
   });
   return { response, result };
 };

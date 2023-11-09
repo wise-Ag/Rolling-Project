@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import styles from './Button.module.css';
+import clsx from "clsx";
+import styles from "./Button.module.css";
 
 const Button = ({
   shape,
@@ -12,10 +12,11 @@ const Button = ({
   disabled,
 }) => {
   const buttonClassName = clsx(
+    styles["button"],
     styles[shape],
     styles[`${direction}Arrow`],
     styles[`${color}`],
-    styles[`size${size}`]
+    styles[`size${size}`],
   );
   const buttonWidth = { width: `${width}rem` };
   return (
