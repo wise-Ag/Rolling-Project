@@ -1,26 +1,22 @@
-import { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 
 import styles from "./EmojiPickerPopover.module.css";
 
 /**
- * 이모지 피커 팝오버를 나타내는 컴포넌트.
- * @param {Object} props - 컴포넌트에 전달되는 속성(props) 객체.
- * @param {ReactNode} props.button - 팝오버 열기 버튼 요소.
- * @param {Function} props.onEmojiClick - 이모지 클릭 이벤트 핸들러 함수.
- * @returns {JSX.Element} - 이모지 피커 팝오버 컴포넌트의 JSX 엘리먼트.
+ * EmojiPickerPopover 컴포넌트는 이모지 선택 팝오버를 렌더링합니다.
+ *
+ * @param {boolean} isEmojiPopoverOpen - 이모지 팝오버가 열려있는지 여부를 나타내는 부울 값.
+ * @param {Function} onButtonClick - 버튼 클릭 이벤트 핸들러 함수.
+ * @param {Function} onEmojiClick - 이모지 클릭 이벤트 핸들러 함수.
+ * @param {JSX.Element} buttonElement - 버튼 엘리먼트.
+ *
+ * @returns {JSX.Element} EmojiPickerPopover 컴포넌트를 반환합니다.
  */
-const EmojiPickerPopover = ({ button, onEmojiClick }) => {
-  const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
-
-  const handleButtonClick = () => {
-    setEmojiPopoverOpen(!isEmojiPopoverOpen);
-  };
-
+const EmojiPickerPopover = ({ isEmojiPopoverOpen, onButtonClick, onEmojiClick, buttonElement }) => {
   return (
     <div className={styles.emojiPickerPopover}>
-      {button}
-      <button className={styles.button} onClick={handleButtonClick}>
+      {buttonElement}
+      <button className={styles.button} onClick={onButtonClick}>
         추가{/* 버튼 컴포넌트로 교체해야함 */}
       </button>
       {isEmojiPopoverOpen && (

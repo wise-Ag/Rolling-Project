@@ -23,8 +23,13 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 const HeaderService = ({ recipientId, recipientName, messageCount, profileImageURLs }) => {
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
+  const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
   const { wrappedFunction: getEmojiAsync } = useAsync(getRecipientReactions);
   const { wrappedFunction: postEmojiAsync } = useAsync(postRecipientReaction);
+
+  const handleButtonClick = () => {
+    setEmojiPopoverOpen(!isEmojiPopoverOpen);
+  };
 
   const updateEmojiData = async () => {
     try {
@@ -69,7 +74,12 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
           </div>
           <BadgeEmojiList emojis={emojiData} />
           <div className={styles.buttonsContainer}>
-            <EmojiPickerPopover onEmojiClick={handleEmojiClick} />
+            <EmojiPickerPopover
+              isEmojiPopoverOpen={isEmojiPopoverOpen}
+              onButtonClick={handleButtonClick}
+              onEmojiClick={handleEmojiClick}
+              buttonElement={""}
+            />
             <div className={styles.verticalLine} />
             <div className={styles.shareButtonContainer}>
               <button className={styles.shareButton} onClick={handleShareClick}>
