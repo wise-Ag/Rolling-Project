@@ -7,7 +7,7 @@ import EmojiPickerPopover from "../EmojiPickerPopover/EmojiPickerPopover";
 import RollingPaperInfo from "../RollingPaperInfo/RollingPaperInfo";
 import postRecipientReaction from "../../apis/postRecipientReaction";
 import getRecipientReactions from "./../../apis/getRecipientReactions";
-import useAsync from "../../hooks/useAsync";
+import { useAsync } from "../../hooks/useAsync";
 import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
