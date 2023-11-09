@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import style from "./RelationBadge.module.css";
+import style from "./BadgeRelation.module.css";
 
 const BADGE_TYPE = {
   지인: { color: "orange" },
@@ -8,7 +8,7 @@ const BADGE_TYPE = {
   친구: { color: "blue" },
 };
 
-const RelationBadge = ({ type }) => {
+const BadgeRelation = ({ type }) => {
   return (
     <div>
       <div
@@ -25,4 +25,4 @@ const RelationBadge = ({ type }) => {
   );
 };
 
-export default RelationBadge;
+export default BadgeRelation;
