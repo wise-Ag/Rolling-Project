@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import styles from './Button.module.css';
 
 const Button = ({
+  className,
   shape,
   direction,
   color,
@@ -9,9 +10,12 @@ const Button = ({
   width,
   children,
   onClick,
+  type = 'submit',
   disabled,
 }) => {
   const buttonClassName = clsx(
+    className,
+    styles["button"],
     styles[shape],
     styles[`${direction}Arrow`],
     styles[`${color}`],
@@ -20,6 +24,7 @@ const Button = ({
   const buttonWidth = { width: `${width}rem` };
   return (
     <button
+      type={type}
       disabled={disabled}
       style={buttonWidth}
       className={buttonClassName}
