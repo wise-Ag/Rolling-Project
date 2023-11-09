@@ -1,4 +1,4 @@
-import RelationBadge from "../Badge/RelationBadge";
+import BadgeRelation from "../BadgeRelation/BadgeRelation";
 import style from "./CardModal.module.css";
 
 const CardModal = ({
@@ -17,7 +17,7 @@ const CardModal = ({
             <h1 className={style.sender}>
               From. <span>{sender}</span>
             </h1>
-            <RelationBadge type={relationship} />
+            <BadgeRelation type={relationship} />
           </div>
         </div>
         <p className={style.createdAt}>{createdAt}</p>{" "}

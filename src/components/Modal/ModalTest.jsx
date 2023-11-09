@@ -1,11 +1,13 @@
 import CardModal from "./CardModal";
 import Modal from "./Modal";
 import Toast from "../Toast/Toast";
-import CloseModalButton from "./CloseModalButton";
-import { useModal } from "./useModal";
-import { useToast } from "../Toast/useToast";
+import { useModal } from "../../hooks/useModal";
+import { useToast } from "../../hooks/useToast";
 import { createContext } from "react";
+import Button from "../Button/Button";
+
 export const ToastContext = createContext();
+
 const ModalTest = () => {
   const { isModalVisible, openModalFunc, closeModalFunc } = useModal();
   const { isToastPop, openToast, closeToast } = useToast();
@@ -22,7 +24,7 @@ const ModalTest = () => {
       {isModalVisible && (
         <Modal>
           <CardModal />
-          <CloseModalButton onButtonClick={closeModalFunc} />
+          <Button onClick={closeModalFunc} width='12' size="40" color="primary">확인</Button>
         </Modal>
       )}
       {isToastPop && (

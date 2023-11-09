@@ -12,7 +12,8 @@ const Main = () => {
           <Route index element={<Index />} />
           <Route path="test" element={<CardContainer />} />
           <Route path="test/:id" element={<CardContainer />} />
-          <Route path="model-test" element={<ModalTest/>}/>
+          {/* 이후에 삭제할 모달, 토스트 테스트용 경로 */}
+          <Route path="modal-test" element={<ModalTest/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
