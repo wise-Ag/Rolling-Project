@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Background.module.css';
 
 const colors = ['beige', 'blue', 'purple', 'green'];

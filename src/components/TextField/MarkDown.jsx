@@ -1,8 +1,5 @@
-import '@toast-ui/editor/dist/toastui-editor.css';
-import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
-import 'tui-color-picker/dist/tui-color-picker.css';
 import { Editor } from '@toast-ui/react-editor';
-import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import '@toast-ui/editor/dist/toastui-editor.css';
 import styles from '../TextField/MarkDown.module.css';
 
 const MarkDown = () => (
@@ -13,7 +10,6 @@ const MarkDown = () => (
       height='260px' // 에디터 영역의 높이 값 (OOOpx || auto)
       initialEditType='wysiwyg' // 최초로 보여줄 에디터 타입 (wysiwyg || markdown)
       useCommandShortcut={false}
-      plugins={[colorSyntax]}
     />
   </div>
 );
