@@ -6,6 +6,7 @@ const useToast = () => {
   const openToast = () => {
     setIsToastPop(true);
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsToastPop(false);
