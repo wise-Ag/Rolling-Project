@@ -1,6 +1,8 @@
+.root {
+  cursor: pointer;
+}
 .header {
   display: flex;
-
   margin-bottom: 1.5rem;
   position: relative;
 }
