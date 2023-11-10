@@ -6,6 +6,7 @@
   position: fixed;
   bottom: 65px;
   left: 50%;
+  z-index: 1;
   width: 524px;
   height: 64px;
   background: rgba(0, 0, 0, 0.8);
