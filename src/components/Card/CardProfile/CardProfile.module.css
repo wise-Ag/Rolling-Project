@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  row-gap: 1rem;
+}
+
+.profile__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--Black);
+}
+
+.profile__relationship {
+  width: 20px;
+  background-color: var(--purple-100);
+  color: var(--purple-700);
+}
