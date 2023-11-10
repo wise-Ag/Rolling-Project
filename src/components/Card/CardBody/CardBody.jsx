@@ -4,7 +4,7 @@ import CardProfile from "../CardProfile/CardProfile";
 import CardContent from "../CardContent/CardContent";
 import CardDate from "../CardDate/CardDate";
 import style from "./CardBody.module.css";
-import bin from "../../../assets/images/bin.svg";
+import bin from "../../../assets/images/icons/bin.svg";
 import { useParams } from "react-router-dom";
 
 const CardBody = ({ item }) => {

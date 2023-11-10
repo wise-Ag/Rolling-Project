@@ -7,7 +7,6 @@ import EmojiPickerPopover from "../EmojiPickerPopover/EmojiPickerPopover";
 import RollingPaperInfo from "../RollingPaperInfo/RollingPaperInfo";
 import postRecipientReaction from "../../apis/postRecipientReaction";
 import getRecipientReactions from "./../../apis/getRecipientReactions";
-import useAsync from "../../hooks/useAsync";
 import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
@@ -24,8 +23,6 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
-  const { wrappedFunction: getEmojiAsync } = useAsync(getRecipientReactions);
-  const { wrappedFunction: postEmojiAsync } = useAsync(postRecipientReaction);
 
   const handleButtonClick = () => {
     setEmojiPopoverOpen(!isEmojiPopoverOpen);
@@ -33,7 +30,7 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
 
   const updateEmojiData = async () => {
     try {
-      const response = await getEmojiAsync({ recipientId, limit: "8" });
+      const response = await getRecipientReactions({ recipientId, limit: "8" });
 
       if (response.result.results) {
         setEmojiData(() => response.result.results.map((value) => ({ emoji: value.emoji, count: value.count })));
@@ -45,7 +42,7 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
 
   const handleEmojiClick = async (emoji) => {
     try {
-      await postEmojiAsync({ recipientId, emoji: emoji.emoji });
+      await postRecipientReaction({ recipientId, emoji: emoji.emoji });
       updateEmojiData();
     } catch (error) {
       console.error("Error posting emoji:", error);
