@@ -3,12 +3,10 @@ import { useEffect } from "react";
 export default function useKaKao() {
   const { Kakao } = window;
 
-  // console.log(Kakao); // {VERSION: '2.4.0', cleanup: ƒ, init: ƒ, isInitialized: ƒ}
   useEffect(() => {
     const jsKey = "4044b3d4c1b332a8f736a3eabf26eefe";
     Kakao.cleanup();
     Kakao.init(jsKey);
-    // console.log(Kakao.isInitialized());
   }, []);
   //
 
@@ -28,8 +26,6 @@ export default function useKaKao() {
       },
     });
   };
-
-  // return으로 함수를 내보내려면?
 
   return shareKakao;
 }

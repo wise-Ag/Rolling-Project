@@ -4,8 +4,6 @@ import Index from "./pages/Index";
 import PostPage from "./pages/PostPage";
 import PostEditPage from "./pages/PostEditPage";
 
-// import KaKao from "./utils/KaKao";
-
 const Main = () => {
   return (
     <BrowserRouter>

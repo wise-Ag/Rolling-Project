@@ -54,10 +54,8 @@ const HeaderService = ({
       console.error("Error updating emoji data:", error);
     }
   };
-  // const zzz = useKaKao;
-  // console.log(zzz);
+
   const shareKakao = useKaKao();
-  // console.log(shareKakao);
   const handleEmojiClick = async (emoji) => {
     try {
       await postRecipientReaction({ recipientId, emoji: emoji.emoji });

@@ -34,7 +34,7 @@ const CardBody = ({ item }) => {
       </div>
       {isModalVisible && (
         <Modal>
-          <CardModal />
+          <CardModal {...item} />
           <Button onClick={closeModalFunc} width="12" size="40" color="primary">
             확인
           </Button>
