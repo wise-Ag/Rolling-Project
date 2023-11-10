@@ -16,7 +16,7 @@ const getRecipientMessages = async ({
   offset = "0",
 }) => {
   const endpoint = apiConfig.endpoints.recipients.messagesList(recipientId);
-
+  console.log(endpoint);
   const query = `?limit=${limit}&offset=${offset}`;
 
   const option = {

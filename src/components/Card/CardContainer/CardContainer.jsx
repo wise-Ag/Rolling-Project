@@ -1,12 +1,16 @@
-import { useGetMessage } from "../../../data-access/useGetMessage";
+// import { useGetMessage } from "../../../data-access/useGetMessage";
 import CardBody from "../CardBody/CardBody";
 import Card from "../Card";
 import CardButtonImage from "../CardImage/CardButtonImage";
 import { useParams } from "react-router-dom";
+import { useAsync } from "../../../hooks/useAsync";
+import getRecipientMessages from "../../../apis/getRecipientMessages";
 
 const CardContainer = () => {
-  const { data } = useGetMessage();
   const { id } = useParams();
+
+  const { data } = useAsync(getRecipientMessages, { recipientId: id });
+  const results = data?.results || [];
 
   return (
     <>
@@ -14,7 +18,7 @@ const CardContainer = () => {
         {/* plus Button */}
         <CardButtonImage id={id} />
       </Card>
-      {data?.map((item) => {
+      {results?.map((item) => {
         return <CardBody key={item.id} item={item} />;
       })}
     </>

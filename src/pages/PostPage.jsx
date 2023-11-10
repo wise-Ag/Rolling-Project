@@ -17,6 +17,7 @@ const PostPage = () => {
     backgroundColor,
     backgroundImageURL,
   } = data;
+
   const recentProfileImg = recentMessages
     ? recentMessages.map((value) => value.profileImageURL)
     : [
