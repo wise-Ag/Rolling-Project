@@ -17,12 +17,10 @@ const CardBody = ({ item }) => {
   const { profileImageURL, sender, relationship, content, createdAt } = item;
 
   const { isModalVisible, openModalFunc, closeModalFunc } = useModal();
-  const handleCardClick = () => {
-    openModalFunc();
-  };
+
   return (
     <>
-      <div className={style.root} onClick={handleCardClick}>
+      <div className={style.root} onClick={openModalFunc}>
         <Card>
           <div className={style.header}>
             <CardProfileImage profileImageURL={profileImageURL} />
