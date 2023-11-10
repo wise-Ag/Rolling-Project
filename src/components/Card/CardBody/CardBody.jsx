@@ -10,11 +10,16 @@ import style from "./CardBody.module.css";
 import bin from "../../../assets/images/icons/bin.svg";
 import { useLocation } from "react-router-dom";
 import { useModal } from "../../../hooks/useModal";
+import { convertDateFormat } from "../../../utils/convertDateFormat";
 
 const CardBody = ({ item }) => {
   const location = useLocation();
   const isEditPage = location.pathname.endsWith("edit");
   const { profileImageURL, sender, relationship, content, createdAt } = item;
+
+  const convertedDate = convertDateFormat(createdAt);
+  const { year, month, day } = convertedDate;
+  const prettyCreatedAt = `${year}. ${month}. ${day}`;
 
   const { isModalVisible, openModalFunc, closeModalFunc } = useModal();
 
@@ -29,12 +34,18 @@ const CardBody = ({ item }) => {
           </div>
           <div className={style.divider}></div>
           <CardContent content={content} />
-          <CardDate createdAt={createdAt} />
+          <CardDate createdAt={prettyCreatedAt} />
         </Card>
       </div>
       {isModalVisible && (
         <Modal>
-          <CardModal />
+          <CardModal
+            profileImageURL={profileImageURL}
+            sender={sender}
+            relationship={relationship}
+            content={content}
+            createdAt={prettyCreatedAt}
+          />
           <Button onClick={closeModalFunc} width="12" size="40" color="primary">
             확인
           </Button>

@@ -2,11 +2,11 @@ import BadgeRelation from "../BadgeRelation/BadgeRelation";
 import style from "./CardModal.module.css";
 
 const CardModal = ({
-  profileImageURL = "https://fastly.picsum.photos/id/1082/100/100.jpg?hmac=0rTbHjwuEo-KpMp2E4aCa2JWXFT_FPh6cqJwhTxcZl4",
-  sender = "Jieun",
-  relationship = "동료",
-  content = "testing",
-  createdAt = "2023.11.2",
+  profileImageURL,
+  sender,
+  relationship,
+  content,
+  createdAt,
 }) => {
   return (
     <div className={style.root}>
