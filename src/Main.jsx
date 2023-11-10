@@ -10,8 +10,6 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Index />} />
-          {/* <Route path="test" element={<CardContainer />} />
-          <Route path="test/:id" element={<CardContainer />} /> */}
         </Route>
         <Route path="/post/:id" element={<PostPage />} />
         <Route path="/post/:id/edit" element={<PostEditPage />} />
