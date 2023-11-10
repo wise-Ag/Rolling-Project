@@ -11,6 +11,8 @@ import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import Toast from "../Toast/Toast";
 import { useToast } from "../../hooks/useToast";
+import useKaKao from "./../../hooks/useKaKao";
+
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
  * @param {Object} props - 컴포넌트에 전달되는 속성(props) 객체.
@@ -29,6 +31,7 @@ const HeaderService = ({
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
+  // const [IsShare, setIsShare] = useState(false);
   const { isToastPop, openToast, closeToast } = useToast();
 
   const handleButtonClick = () => {
@@ -51,7 +54,10 @@ const HeaderService = ({
       console.error("Error updating emoji data:", error);
     }
   };
-
+  // const zzz = useKaKao;
+  // console.log(zzz);
+  const shareKakao = useKaKao();
+  // console.log(shareKakao);
   const handleEmojiClick = async (emoji) => {
     try {
       await postRecipientReaction({ recipientId, emoji: emoji.emoji });
@@ -99,7 +105,12 @@ const HeaderService = ({
               </button>
               {isSharePopover && (
                 <div className={styles.sharePopover}>
-                  <button className={styles.sharePopoverButton}>
+                  <button
+                    className={styles.sharePopoverButton}
+                    onClick={() => {
+                      shareKakao();
+                    }}
+                  >
                     카카오톡 공유
                   </button>
                   <button
@@ -108,7 +119,6 @@ const HeaderService = ({
                   >
                     URL 공유
                   </button>
-
                   {isToastPop && (
                     <Toast onClick={closeToast}>URL이 복사되었습니다</Toast>
                   )}
