@@ -39,13 +39,7 @@ const CardBody = ({ item }) => {
       </div>
       {isModalVisible && (
         <Modal>
-          <CardModal
-            profileImageURL={profileImageURL}
-            sender={sender}
-            relationship={relationship}
-            content={content}
-            createdAt={prettyCreatedAt}
-          />
+          <CardModal {...item} />
           <Button onClick={closeModalFunc} width="12" size="40" color="primary">
             확인
           </Button>

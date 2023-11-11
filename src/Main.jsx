@@ -3,7 +3,6 @@ import App from "./App";
 import Index from "./pages/Index";
 import PostPage from "./pages/PostPage";
 import PostEditPage from "./pages/PostEditPage";
-import Test from "./pages/Test";
 
 const Main = () => {
   return (
@@ -14,7 +13,6 @@ const Main = () => {
         </Route>
         <Route path="/post/:id" element={<PostPage />} />
         <Route path="/post/:id/edit" element={<PostEditPage />} />
-        <Route path="share" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );
