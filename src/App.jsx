@@ -1,19 +1,18 @@
-import { Outlet } from "react-router";
-import Header from "./components/Header/Header";
-import HeaderService from "./components/HeaderService/HeaderService";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Index from "./pages/Index";
 
 const App = () => {
   return (
-    <>
-      <Header button={<button>테스트 버튼</button> /* 버튼 컴포넌트 받아야함 */} />
-      <HeaderService
-        recipientId="20"
-        recipientName={"테스트 입니다."}
-        messageCount={20}
-        profileImageURLs={["example/profileImage01.png", "example/profileImage02.png", "example/profileImage03.png"]}
-      />
-      <Outlet />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />}/>
+        <Route path="list" element={<Index />} />
+        <Route path="post" element={<Index />} /* 정진호 */ />
+        <Route path="post/:id" element={<Index />} />
+        <Route path="post/:id/edit" element={<Index />} />
+        <Route path="post/:id/message" element={<Index />} /* 정진호 */ />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
