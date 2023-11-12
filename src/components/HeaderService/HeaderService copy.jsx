@@ -11,8 +11,7 @@ import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import Toast from "../Toast/Toast";
 import { useToast } from "../../hooks/useToast";
-import { useKaKao } from "../../hooks/useKaKao";
-import KaKaoshareController from "../../controller/KaKaoShareController";
+import useKaKao from "./../../hooks/useKaKao";
 
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
@@ -32,7 +31,7 @@ const HeaderService = ({
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
-
+  // const [IsShare, setIsShare] = useState(false);
   const { isToastPop, openToast, closeToast } = useToast();
 
   const handleButtonClick = () => {
@@ -74,7 +73,6 @@ const HeaderService = ({
     updateEmojiData();
   }, []);
 
-  // const buttonRef = useRef(null);
   return (
     <div className={styles.headerService}>
       <div className={styles.container}>
@@ -98,7 +96,6 @@ const HeaderService = ({
               onEmojiClick={handleEmojiClick}
               buttonElement={""}
             />
-
             <div className={styles.verticalLine} />
             <div className={styles.shareButtonContainer}>
               <button className={styles.shareButton} onClick={handleShareClick}>
@@ -106,9 +103,14 @@ const HeaderService = ({
               </button>
               {isSharePopover && (
                 <div className={styles.sharePopover}>
-                  <KaKaoshareController onClick={shareKakao}>
+                  <button
+                    className={styles.sharePopoverButton}
+                    onClick={() => {
+                      shareKakao();
+                    }}
+                  >
                     카카오톡 공유
-                  </KaKaoshareController>
+                  </button>
                   <button
                     className={styles.sharePopoverButton}
                     onClick={openToast}
