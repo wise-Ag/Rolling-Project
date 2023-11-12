@@ -18,7 +18,6 @@ const CardContainer = () => {
   });
 
   useEffect(() => {
-    // 이 데이터는 items state값을 말하는건가?
     if (data) {
       setItems(data.results || []);
     }
@@ -29,7 +28,6 @@ const CardContainer = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    // fecthing이 false이면은  즉 더 많은 데이터를 안 가지고 오는 상태
     if (fetching === false && scrollTop + clientHeight >= scrollHeight) {
       setFetching(true);
     }
@@ -50,11 +48,9 @@ const CardContainer = () => {
 
     setItems((prev) => [...prev, ...results]);
     setOffset((prev) => prev + 8);
-    // 데이터를 다 가져왔음 다시 false로
     setFetching(false);
   };
 
-  // 더 불러오기가 실행이 됬을때 실행되는 유즈이펙트
   useEffect(() => {
     if (fetching && items.length > 0) {
       fetchMoreData();
@@ -72,7 +68,6 @@ const CardContainer = () => {
   return (
     <>
       <Card>
-        {/* plus Button */}
         <CardButtonImage id={id} />
       </Card>
       {items?.map((item) => {
