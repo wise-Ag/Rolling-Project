@@ -1,12 +1,13 @@
 import style from "./CardButtonImage.module.css";
-import plusbutton from "../../../assets/images/icons/plusbutton.svg";
 import { Link } from "react-router-dom";
+import Button from "../../Button/Button";
+import styles from "../../Button/Button.module.css";
 
 const CardButtonImage = ({ id }) => {
   return (
     <div className={style.container}>
       <Link to={`/post/${id}/message`}>
-        <img src={plusbutton} alt="plus-button" />
+        <Button className={styles.plus} />
       </Link>
     </div>
   );
