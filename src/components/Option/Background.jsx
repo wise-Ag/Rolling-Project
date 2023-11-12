@@ -2,11 +2,10 @@ import { useState } from 'react';
 import styles from './Background.module.css';
 import checkIcon from '../../assets/images/icons/checkIcon.svg';
 
-const Background = ({
-  colors = ['beige', 'blue', 'purple', 'green'],
-  defaultColor = 'beige',
-}) => {
-  const [selectedColor, setSelectedColor] = useState(defaultColor);
+const colors = ['beige', 'blue', 'purple', 'green'];
+
+const Background = () => {
+  const [selectedColor, setSelectedColor] = useState('beige');
 
   const handleClickColor = (color) => {
     setSelectedColor(color);
