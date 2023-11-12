@@ -7,7 +7,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Index />}/>
+        <Route path="/" element={<Index />} />
         <Route path="list" element={<Index />} />
         <Route path="post" element={<CreateTo />} /* 정진호 */ />
         <Route path="post/:id" element={<Index />} />
