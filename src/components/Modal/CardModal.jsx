@@ -1,13 +1,12 @@
 import BadgeRelation from "../BadgeRelation/BadgeRelation";
 import style from "./CardModal.module.css";
-
-const CardModal = ({
-  profileImageURL = "https://fastly.picsum.photos/id/1082/100/100.jpg?hmac=0rTbHjwuEo-KpMp2E4aCa2JWXFT_FPh6cqJwhTxcZl4",
-  sender = "Jieun",
-  relationship = "동료",
-  content = "testing",
-  createdAt = "2023.11.2",
-}) => {
+// profileImageURL = "https://fastly.picsum.photos/id/1082/100/100.jpg?hmac=0rTbHjwuEo-KpMp2E4aCa2JWXFT_FPh6cqJwhTxcZl4",
+// sender = "Jieun",
+// relationship = "친구",
+// content = "testing",
+// createdAt = "2023.11.2",
+const CardModal = ({ ...item }) => {
+  const { profileImageURL, sender, relationship, createdAt, content } = item;
   return (
     <div className={style.root}>
       <div className={style.header}>
@@ -20,7 +19,7 @@ const CardModal = ({
             <BadgeRelation type={relationship} />
           </div>
         </div>
-        <p className={style.createdAt}>{createdAt}</p>{" "}
+        <p className={style.createdAt}>{createdAt}</p>
       </div>
       <div className={style.content}>{content}</div>
     </div>
