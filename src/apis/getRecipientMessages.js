@@ -10,7 +10,7 @@ import { apiConfig } from "./apiConfig";
  * @param {string} [params.offset="0"] - 가져올 메시지 목록의 시작 위치 (기본값: "0" - 처음부터 시작)
  * @returns {Promise} - GET 요청의 비동기 Promise
  */
-const getRecipientMessages = async ({ recipientId, limit, offset }) => {
+const getRecipientMessages = async ({ recipientId, limit = 0, offset = 0 }) => {
   const endpoint = apiConfig.endpoints.recipients.messagesList(recipientId);
 
   const query = `?limit=${limit}&offset=${offset}`;

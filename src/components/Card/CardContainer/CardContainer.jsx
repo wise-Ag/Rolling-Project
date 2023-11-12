@@ -1,4 +1,3 @@
-// import { useGetMessage } from "../../../data-access/useGetMessage";
 import CardBody from "../CardBody/CardBody";
 import Card from "../Card";
 import CardButtonImage from "../CardImage/CardButtonImage";
@@ -16,10 +15,7 @@ const CardContainer = () => {
   const { data } = useAsync(getRecipientMessages, {
     recipientId: id,
     limit: LIMIT,
-    offset: offset,
   });
-
-  console.log(data);
 
   useEffect(() => {
     // 이 데이터는 items state값을 말하는건가?
@@ -37,7 +33,6 @@ const CardContainer = () => {
     if (fetching === false && scrollTop + clientHeight >= scrollHeight) {
       setFetching(true);
     }
-    // 데이터를 더 가져오는 함수 쓰기
   };
 
   const fetchMoreData = async () => {
@@ -48,13 +43,11 @@ const CardContainer = () => {
     });
 
     const {
-      result: { next, results },
+      result: { count, results },
     } = data;
 
-    if (!next) {
-      return;
-    }
-    // const newResult = results || [];
+    if (offset > count) return;
+
     setItems((prev) => [...prev, ...results]);
     setOffset((prev) => prev + 8);
     // 데이터를 다 가져왔음 다시 false로
