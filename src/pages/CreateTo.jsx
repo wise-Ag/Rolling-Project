@@ -4,10 +4,10 @@ import Header from "../components/Header/Header";
 import Input from "../components/TextField/Input";
 import styles from "./CreateTo.module.css";
 import Background from "../components/Option/Background";
-import postRecipientCreate from "../apis/postRecipientCreate";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
-const CreateTo = () => {
+function CreateTo() {
   // 이름 input value 추적
   const [to, setTo] = useState("");
 
@@ -21,7 +21,11 @@ const CreateTo = () => {
 
   const [isLoading, setIsloading] = useState(false);
 
-  const navigate = useNavigate();
+  const auth = useAuth();
+
+  if (auth.isAuth()) {
+    return <Navigate to={`/post/${auth.id}`} />;
+  }
 
   const handleChange = (e) => {
     setTo(e.target.value);
@@ -47,11 +51,7 @@ const CreateTo = () => {
 
     try {
       setIsloading(true);
-      const { response, result } = await postRecipientCreate(dataset);
-      if (response.ok) {
-        localStorage.setItem("ID", result.id);
-        navigate(`/post/${result.id}`);
-      }
+      await auth.tryLogin(dataset);
     } finally {
       setIsloading(false);
     }
@@ -129,6 +129,6 @@ const CreateTo = () => {
       </div>
     </>
   );
-};
+}
 
 export default CreateTo;
