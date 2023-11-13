@@ -25,7 +25,6 @@
   position: relative;
   z-index: 1;
   width: 32rem;
-  height: 30rem;
   background: var(--white, #fff);
   background-color: white;
   color: black;
