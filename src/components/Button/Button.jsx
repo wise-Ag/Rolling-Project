@@ -1,5 +1,6 @@
-import styles from "./Button.module.css";
 import clsx from "clsx";
+import styles from "./Button.module.css";
+
 const Button = ({
   className,
   shape,
@@ -22,6 +23,7 @@ const Button = ({
   );
 
   const buttonWidth = { width: `${width}rem` };
+
   return (
     <button
       type={type}

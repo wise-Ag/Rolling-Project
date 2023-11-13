@@ -9,6 +9,8 @@ import postRecipientReaction from "../../apis/postRecipientReaction";
 import getRecipientReactions from "./../../apis/getRecipientReactions";
 import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
+import Button from "../Button/Button";
+import EmojiAddImage from "../../assets/images/icons/imojiAddIcon.svg";
 import Toast from "../Toast/Toast";
 import { useToast } from "../../hooks/useToast";
 import { useKaKao } from "../../hooks/useKaKao";
@@ -94,16 +96,24 @@ const HeaderService = ({
           <div className={styles.buttonsContainer}>
             <EmojiPickerPopover
               isEmojiPopoverOpen={isEmojiPopoverOpen}
-              onButtonClick={handleButtonClick}
               onEmojiClick={handleEmojiClick}
-              buttonElement={""}
+              buttonElement={
+                <Button
+                  color={"outlined"}
+                  size={36}
+                  onClick={handleButtonClick}
+                >
+                  <img src={EmojiAddImage} alt="이모지 추가 이미지" />
+                  추가
+                </Button>
+              }
             />
 
             <div className={styles.verticalLine} />
             <div className={styles.shareButtonContainer}>
-              <button className={styles.shareButton} onClick={handleShareClick}>
+              <Button color={"outlined"} size={36} onClick={handleShareClick}>
                 <img src={shareImage} alt="공유 이미지" />
-              </button>
+              </Button>
               {isSharePopover && (
                 <div className={styles.sharePopover}>
                   <KaKaoshareController onClick={shareKakao}>
