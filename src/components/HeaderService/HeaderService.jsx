@@ -74,7 +74,6 @@ const HeaderService = ({
     updateEmojiData();
   }, []);
 
-  // const buttonRef = useRef(null);
   return (
     <div className={styles.headerService}>
       <div className={styles.container}>
