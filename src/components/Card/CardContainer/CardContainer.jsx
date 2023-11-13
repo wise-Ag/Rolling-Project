@@ -3,15 +3,17 @@ import CardButtonImage from "../CardImage/CardButtonImage";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import getRecipientMessages from "../../../apis/getRecipientMessages";
-import { useEffect, useState } from "react";
-import InfiniteScroll from "./InfiniteScroll";
+import { useEffect, useRef, useState } from "react";
 
+import CardBody from "../CardBody/CardBody";
 const CardContainer = () => {
   const LIMIT = 8;
   const { id } = useParams();
   const [offset, setOffset] = useState(8);
   const [items, setItems] = useState([]);
-  const [fetching, setFetching] = useState(false);
+  const [count, setCount] = useState(0);
+  const [Isvisible, setIsVisible] = useState(false);
+
   const { data } = useAsync(getRecipientMessages, {
     recipientId: id,
     limit: LIMIT,
@@ -22,6 +24,23 @@ const CardContainer = () => {
       setItems(data.results || []);
     }
   }, [data]);
+
+  const myRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      console.log(entry);
+      setIsVisible(entry.isIntersecting);
+    });
+    if (myRef.current) {
+      observer.observe(myRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [items]);
 
   const fetchMoreData = async () => {
     const data = await getRecipientMessages({
@@ -38,23 +57,38 @@ const CardContainer = () => {
 
     setItems((prev) => [...prev, ...results]);
     setOffset((prev) => prev + 8);
-    setFetching(false);
+    setIsVisible(false);
+    setCount(count);
   };
 
-  // useEffect(() => {
-  //   window.scroll(0, 0);
-  // }, []);
+  useEffect(() => {
+    if (count !== 0) {
+      if (offset >= count) {
+        return;
+      }
+    }
+    console.log(Isvisible);
+    if (Isvisible) {
+      fetchMoreData();
+    }
+  }, [Isvisible]);
+
   return (
     <>
       <Card>
         <CardButtonImage id={id} />
       </Card>
-      <InfiniteScroll
-        items={items}
-        status={fetching}
-        setStatus={setFetching}
-        fetchfunc={fetchMoreData}
-      />
+      {items?.map((item, index) => {
+        return (
+          <CardBody
+            key={item.id}
+            item={item}
+            myRef={myRef}
+            index={index}
+            items={items}
+          />
+        );
+      })}
     </>
   );
 };
