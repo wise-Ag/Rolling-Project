@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function useKaKao() {
+export const useKaKao = () => {
   const { Kakao } = window;
 
   useEffect(() => {
@@ -8,19 +8,12 @@ export default function useKaKao() {
     Kakao.cleanup();
     Kakao.init(jsKey);
   }, []);
-  //
 
   const shareKakao = () => {
-    // const currentURL = window.location.pathname;
-    // const regex = /(?<=post\/)(\w+)/;
-    // const match = currentURL.match(regex);
-    // console.log(match[1]);
-    // /post/1/edit
-    // post/1
-
     const id = 1;
-    Kakao.Share.sendCustom({
-      templateId: 100578,
+
+    Kakao.Link.sendCustom({
+      templateId: 100601,
       templateArgs: {
         id: id,
       },
@@ -28,4 +21,4 @@ export default function useKaKao() {
   };
 
   return shareKakao;
-}
+};

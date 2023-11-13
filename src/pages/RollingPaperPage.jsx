@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import HeaderService from "../components/HeaderService/HeaderService";
 import getRecipientRead from "../apis/getRecipientRead";
 import { useAsync } from "../hooks/useAsync";
-import style from "./PostPage.module.css";
+import style from "./RollingPaperPage.module.css";
 import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 

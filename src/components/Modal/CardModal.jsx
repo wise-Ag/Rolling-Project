@@ -1,8 +1,8 @@
 import BadgeRelation from "../BadgeRelation/BadgeRelation";
 import style from "./CardModal.module.css";
 
-const CardModal = ({ ...item }) => {
-  const { profileImageURL, sender, relationship, createdAt, content } = item;
+const CardModal = ({ item, createdAt }) => {
+  const { profileImageURL, sender, relationship, content } = item;
 
   return (
     <div className={style.root}>
