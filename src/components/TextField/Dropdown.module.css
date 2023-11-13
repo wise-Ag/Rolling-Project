@@ -22,6 +22,8 @@
   border: 0.1rem solid var(--gray-300, #ccc);
   box-shadow: 0rem 0.2rem 1.2rem 0rem rgba(0, 0, 0, 0.08);
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
   width: 32rem;
   height: 30rem;
   background: var(--white, #fff);

@@ -18,16 +18,7 @@
   border-radius: 99rem;
 }
 
-.plus {
-  background-image: url("../../assets/images/icons/plusIcon.svg");
-}
-
-.check {
-  background-image: url("../../assets/images/icons/checkIcon.svg");
-}
-
-.plus:disabled,
-.check:disabled {
+.plus:disabled {
   background-color: var(--gray-300);
 }
 

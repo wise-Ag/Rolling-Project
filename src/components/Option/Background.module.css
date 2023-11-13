@@ -2,13 +2,13 @@
   display: inline-flex;
   gap: 1.6rem;
   align-items: flex-start;
+  width: 100%;
 }
 
-.colorBox {
+.backgroundBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1.6rem;
   width: 16.8rem;
   height: 16.8rem;
   cursor: pointer;
@@ -31,7 +31,7 @@
   background-color: #d0f5c3;
 }
 
-.image {
+.icon {
   width: 4.4rem;
   height: 4.4rem;
   background-color: #555555;

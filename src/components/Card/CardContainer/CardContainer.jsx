@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import getRecipientMessages from "../../../apis/getRecipientMessages";
 import { useEffect, useRef, useState } from "react";
-
 import CardBody from "../CardBody/CardBody";
+
 const CardContainer = () => {
   const LIMIT = 8;
   const { id } = useParams();
