@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Index from "./pages/Index";
 import RollingPaperPage from "./pages/RollingPaperPage";
-import PostEditPage from "./pages/RollingPaperEditPage";
+import RollingPaperEditPage from "./pages/RollingPaperEditPage";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
         <Route path="list" element={<Index />} />
         <Route path="post" element={<Index />} />
         <Route path="post/:id" element={<RollingPaperPage />} />
-        <Route path="post/:id/edit" element={<PostEditPage />} />
+        <Route path="post/:id/edit" element={<RollingPaperEditPage />} />
         <Route path="post/:id/message" element={<Index />} />
       </Routes>
     </BrowserRouter>
