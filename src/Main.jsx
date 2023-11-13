@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import Index from "./pages/Index";
-import PostPage from "./pages/PostPage";
-import PostEditPage from "./pages/PostEditPage";
+import PostPage from "./pages/RollingPaperPage";
+import PostEditPage from "./pages/RollingPaperEditPage";
 
 const Main = () => {
   return (
