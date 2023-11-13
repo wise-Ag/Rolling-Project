@@ -15,6 +15,7 @@ import Toast from "../Toast/Toast";
 import { useToast } from "../../hooks/useToast";
 import { useKaKao } from "../../hooks/useKaKao";
 import KaKaoshareController from "../../controller/KaKaoShareController";
+import { copyClipBoard } from "../../utils/copyToClipboard";
 
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
@@ -39,6 +40,10 @@ const HeaderService = ({
 
   const handleButtonClick = () => {
     setEmojiPopoverOpen(!isEmojiPopoverOpen);
+  };
+  const handlePasteClick = () => {
+    openToast();
+    copyClipBoard(window.location.href);
   };
 
   const updateEmojiData = async () => {
@@ -121,7 +126,7 @@ const HeaderService = ({
                   </KaKaoshareController>
                   <button
                     className={styles.sharePopoverButton}
-                    onClick={openToast}
+                    onClick={handlePasteClick}
                   >
                     URL 공유
                   </button>
