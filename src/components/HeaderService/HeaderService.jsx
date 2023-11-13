@@ -41,6 +41,7 @@ const HeaderService = ({
   const handleButtonClick = () => {
     setEmojiPopoverOpen(!isEmojiPopoverOpen);
   };
+
   const handlePasteClick = () => {
     openToast();
     copyClipBoard(window.location.href);

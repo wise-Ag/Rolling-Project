@@ -50,6 +50,7 @@
   display: flex;
   gap: 1.3rem;
   align-items: center;
+  z-index: 1;
 }
 
 .shareButtonContainer {
