@@ -14,7 +14,7 @@ const MarkDown = ({ setter }) => {
   return (
     <div className={styles.container}>
       <Editor
-        initialValue="I am your reach text editor."
+        initialValue=" "
         previewStyle="vertical"
         height="26rem"
         initialEditType="wysiwyg"

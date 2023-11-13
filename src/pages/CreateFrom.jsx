@@ -8,6 +8,8 @@ import Dropdown from "../components/TextField/Dropdown";
 const CreateFrom = () => {
   const [from, setFrom] = useState("");
 
+  const [markDownInput, setMarkDownInput] = useState("");
+
   const [getRelation, setRelation] = useState("지인");
   const [getFont, setFont] = useState("Noto Sans");
 
@@ -21,6 +23,8 @@ const CreateFrom = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  console.log(markDownInput);
 
   return (
     <>
@@ -47,7 +51,7 @@ const CreateFrom = () => {
             setSelected={setRelation}
           />
           <h2 className={styles.title}>내용을 입력해 주세요</h2>
-          <MarkDown />
+          <MarkDown setter={setMarkDownInput} />
           <h2 className={styles.title}>폰트 선택</h2>
           <Dropdown option={font} selected={getFont} setSelected={setFont} />
         </form>

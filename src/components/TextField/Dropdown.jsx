@@ -13,8 +13,6 @@ const Dropdown = ({ option, selected, setSelected }) => {
       </div>
       <ul className={open ? styles.ul__open : styles.ul__close}>
         {option?.map((name) => {
-          console.log(name);
-
           const handleClick = () => {
             if (name?.toLowerCase() !== selected.toLowerCase()) {
               setSelected(name);

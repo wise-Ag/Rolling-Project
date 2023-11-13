@@ -4,26 +4,57 @@ import Header from "../components/Header/Header";
 import Input from "../components/TextField/Input";
 import styles from "./CreateTo.module.css";
 import Background from "../components/Option/Background";
+import postRecipientCreate from "../apis/postRecipientCreate";
+import { useNavigate } from "react-router-dom";
 
 const CreateTo = () => {
+  // 이름 input value 추적
   const [to, setTo] = useState("");
+
+  //  버튼 토글에 따라서 구성할 조건식
   const [colorButton, setColorButton] = useState(true);
   const [imgButton, setimgButton] = useState(false);
 
+  // 색상과 이미지 배경값을 받아오는 용도
   const [imgOpt, setImgOpt] = useState();
   const [colorOpt, setColorOpt] = useState("beige");
+
+  const [isLoading, setIsloading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setTo(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleToggleButtonClick = () => {
     setColorButton((color) => !color);
     setimgButton((img) => !img);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const dataset = {
+      name: to,
+      backgroundColor: colorOpt,
+      backgroundImageURL: imgOpt,
+    };
+
+    if (dataset.name === "") {
+      return;
+    }
+
+    try {
+      setIsloading(true);
+      const { response, result } = await postRecipientCreate(dataset);
+      if (response.ok) {
+        localStorage.setItem("ID", result.id);
+        navigate(`/post/${result.id}`);
+      }
+    } finally {
+      setIsloading(false);
+    }
   };
 
   const colors = ["beige", "blue", "purple", "green"];
@@ -58,14 +89,14 @@ const CreateTo = () => {
             <button
               className={styles.toggleButton}
               disabled={colorButton}
-              onClick={handleClick}
+              onClick={handleToggleButtonClick}
             >
               색상
             </button>
             <button
               className={styles.toggleButton}
               disabled={imgButton}
-              onClick={handleClick}
+              onClick={handleToggleButtonClick}
             >
               이미지
             </button>
@@ -86,6 +117,7 @@ const CreateTo = () => {
           )}
 
           <Button
+            disabled={isLoading}
             className={styles.button}
             shape="block"
             color="primary"
