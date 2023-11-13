@@ -3,6 +3,7 @@ import App from "./App";
 import Index from "./pages/Index";
 import CardContainer from "./components/Card/CardContainer/CardContainer";
 import ModalTest from "./components/Modal/ModalTest";
+import CardListPage from "./pages/CardListPage";
 
 const Main = () => {
   return (
@@ -13,7 +14,8 @@ const Main = () => {
           <Route path="test" element={<CardContainer />} />
           <Route path="test/:id" element={<CardContainer />} />
           {/* 이후에 삭제할 모달, 토스트 테스트용 경로 */}
-          <Route path="modal-test" element={<ModalTest/>}/>
+          <Route path="modal-test" element={<ModalTest />} />
+          <Route path="cardlist-test" element={<CardListPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
