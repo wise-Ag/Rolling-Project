@@ -5,6 +5,11 @@
   justify-content: space-between;
 }
 
+.card {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .name {
   font-family: Pretendard;
   font-size: 2.8rem;
@@ -14,15 +19,8 @@
   letter-spacing: -0.028rem;
 }
 
-.description {
-  font-family: Pretendard;
-  font-size: 1.8rem;
-  line-height: 2.7rem; /* 150% */
-  color: var(--gray-900, #181818);
-}
-
-.accent {
-  font-weight: 700;
+.name.white {
+  color: var(--white, #fff);
 }
 
 /* Tablet 화면 크기 (1199px 이하) */
@@ -31,4 +29,10 @@
 
 /* Mobile 화면 크기 (767px 이하) */
 @media screen and (max-width: 767px) {
+  .name {
+    font-family: Pretendard;
+    font-size: 1.8rem;
+    line-height: 2.8rem; /* 155.556% */
+    letter-spacing: -0.018rem;
+  }
 }
