@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Index from "./pages/Index";
+import CardListPage from "./pages/CardListPage";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="list" element={<Index />} />
+        <Route path="list" element={<CardListPage />} /* 이정윤 */ />
         <Route path="post" element={<Index />} /* 정진호 */ />
         <Route path="post/:id" element={<Index />} />
         <Route path="post/:id/edit" element={<Index />} />
