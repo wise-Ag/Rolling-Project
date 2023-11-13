@@ -12,13 +12,14 @@ import styles from "./EmojiPickerPopover.module.css";
  *
  * @returns {JSX.Element} EmojiPickerPopover 컴포넌트를 반환합니다.
  */
-const EmojiPickerPopover = ({ isEmojiPopoverOpen, onButtonClick, onEmojiClick, buttonElement }) => {
+const EmojiPickerPopover = ({
+  isEmojiPopoverOpen,
+  onEmojiClick,
+  buttonElement,
+}) => {
   return (
     <div className={styles.emojiPickerPopover}>
       {buttonElement}
-      <button className={styles.button} onClick={onButtonClick}>
-        추가{/* 버튼 컴포넌트로 교체해야함 */}
-      </button>
       {isEmojiPopoverOpen && (
         <div className={styles.emojiPopover}>
           <EmojiPicker onEmojiClick={onEmojiClick} width={306} height={392} />

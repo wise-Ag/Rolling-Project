@@ -9,6 +9,8 @@ import postRecipientReaction from "../../apis/postRecipientReaction";
 import getRecipientReactions from "./../../apis/getRecipientReactions";
 import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
+import Button from "../Button/Button";
+import EmojiAddImage from "../../assets/images/icons/imojiAddIcon.svg";
 
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
@@ -19,7 +21,12 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
  * @param {string[]} props.profileImageURLs - 프로필 이미지 URL 목록. (예시: ["example/profileImage01.png", "example/profileImage02.png", "example/profileImage03.png"])
  * @returns {JSX.Element} - 헤더 서비스 컴포넌트의 JSX 엘리먼트.
  */
-const HeaderService = ({ recipientId, recipientName, messageCount, profileImageURLs }) => {
+const HeaderService = ({
+  recipientId,
+  recipientName,
+  messageCount,
+  profileImageURLs,
+}) => {
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
@@ -33,7 +40,12 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
       const response = await getRecipientReactions({ recipientId, limit: "8" });
 
       if (response.result.results) {
-        setEmojiData(() => response.result.results.map((value) => ({ emoji: value.emoji, count: value.count })));
+        setEmojiData(() =>
+          response.result.results.map((value) => ({
+            emoji: value.emoji,
+            count: value.count,
+          })),
+        );
       }
     } catch (error) {
       console.error("Error updating emoji data:", error);
@@ -62,7 +74,10 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
       <div className={styles.container}>
         <div className={styles.rollingPaperInfocontainer}>
           <RollingPaperInfo recipientName={recipientName}>
-            <ProfileInfo messageCount={messageCount} profileImageURLs={profileImageURLs} />
+            <ProfileInfo
+              messageCount={messageCount}
+              profileImageURLs={profileImageURLs}
+            />
           </RollingPaperInfo>
         </div>
         <div className={styles.utilsConainer}>
@@ -73,19 +88,31 @@ const HeaderService = ({ recipientId, recipientName, messageCount, profileImageU
           <div className={styles.buttonsContainer}>
             <EmojiPickerPopover
               isEmojiPopoverOpen={isEmojiPopoverOpen}
-              onButtonClick={handleButtonClick}
               onEmojiClick={handleEmojiClick}
-              buttonElement={""}
+              buttonElement={
+                <Button
+                  color={"outlined"}
+                  size={36}
+                  onClick={handleButtonClick}
+                >
+                  <img src={EmojiAddImage} alt="이모지 추가 이미지" />
+                  추가
+                </Button>
+              }
             />
             <div className={styles.verticalLine} />
             <div className={styles.shareButtonContainer}>
-              <button className={styles.shareButton} onClick={handleShareClick}>
+              <Button color={"outlined"} size={36} onClick={handleShareClick}>
                 <img src={shareImage} alt="공유 이미지" />
-              </button>
+              </Button>
               {isSharePopover && (
                 <div className={styles.sharePopover}>
-                  <button className={styles.sharePopoverButton}>카카오톡 공유</button>
-                  <button className={styles.sharePopoverButton}>URL 공유</button>
+                  <button className={styles.sharePopoverButton}>
+                    카카오톡 공유
+                  </button>
+                  <button className={styles.sharePopoverButton}>
+                    URL 공유
+                  </button>
                 </div>
               )}
             </div>
