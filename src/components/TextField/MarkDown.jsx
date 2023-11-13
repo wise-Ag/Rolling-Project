@@ -1,19 +1,15 @@
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import styles from "../TextField/MarkDown.module.css";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-const MarkDown = () => {
+const MarkDown = ({ setter }) => {
   const editorRef = useRef();
 
-  useEffect(() => {
-    if (editorRef.current) {
-      const editorInstance = editorRef.current.getInstance();
-      const markdownContent = editorInstance.getMarkdown();
-
-      console.log(markdownContent);
-    }
-  }, []);
+  const handleChange = () => {
+    const data = editorRef.current.getInstance().getMarkdown();
+    setter(data);
+  };
 
   return (
     <div className={styles.container}>
@@ -24,6 +20,7 @@ const MarkDown = () => {
         initialEditType="wysiwyg"
         useCommandShortcut={false}
         ref={editorRef}
+        onChange={handleChange}
       />
     </div>
   );
