@@ -12,6 +12,8 @@ const Button = ({
   onClick,
   type = "submit",
   disabled,
+  onMouseDown,
+  onBlur,
 }) => {
   const buttonClassName = clsx(
     styles["button"],
@@ -31,6 +33,8 @@ const Button = ({
       style={buttonWidth}
       className={buttonClassName}
       onClick={onClick}
+      onMouseDown={onMouseDown}
+      onBlur={onBlur}
     >
       {children}
     </button>

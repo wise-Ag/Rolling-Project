@@ -42,6 +42,10 @@ const HeaderService = ({
     setEmojiPopoverOpen(!isEmojiPopoverOpen);
   };
 
+  // const handleButtonBlur = () => {
+  //   setEmojiPopoverOpen(false);
+  // };
+
   const handlePasteClick = () => {
     openToast();
     copyClipBoard(window.location.href);
@@ -76,6 +80,10 @@ const HeaderService = ({
 
   const handleShareClick = () => {
     setSharePopover(!isSharePopover);
+  };
+
+  const handleShareBlur = () => {
+    setSharePopover(false);
   };
 
   useEffect(() => {
@@ -115,7 +123,10 @@ const HeaderService = ({
             />
 
             <div className={styles.verticalLine} />
-            <div className={styles.shareButtonContainer}>
+            <div
+              className={styles.shareButtonContainer}
+              onBlur={handleShareBlur}
+            >
               <Button color={"outlined"} size={36} onClick={handleShareClick}>
                 <img src={shareImage} alt="공유 이미지" />
               </Button>
@@ -126,18 +137,16 @@ const HeaderService = ({
                   </KaKaoshareController>
                   <button
                     className={styles.sharePopoverButton}
-                    onClick={handlePasteClick}
+                    onMouseDown={handlePasteClick}
                   >
                     URL 공유
                   </button>
-                  {isToastPop && (
-                    <Toast onClick={closeToast}>URL이 복사되었습니다</Toast>
-                  )}
                 </div>
               )}
             </div>
           </div>
-        </div>
+        </div>{" "}
+        {isToastPop && <Toast onClick={closeToast}>URL이 복사되었습니다</Toast>}
       </div>
     </div>
   );
