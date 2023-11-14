@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./HeaderService.module.css";
 
@@ -35,16 +35,12 @@ const HeaderService = ({
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
-
   const { isToastPop, openToast, closeToast } = useToast();
 
+  const myRef = useRef();
   const handleButtonClick = () => {
     setEmojiPopoverOpen(!isEmojiPopoverOpen);
   };
-
-  // const handleButtonBlur = () => {
-  //   setEmojiPopoverOpen(false);
-  // };
 
   const handlePasteClick = () => {
     openToast();
@@ -108,7 +104,10 @@ const HeaderService = ({
           <BadgeEmojiList emojis={emojiData} />
           <div className={styles.buttonsContainer}>
             <EmojiPickerPopover
+              myRef={myRef}
+              setEmojiPopoverOpen={setEmojiPopoverOpen}
               isEmojiPopoverOpen={isEmojiPopoverOpen}
+              handleButtonClick={handleButtonClick}
               onEmojiClick={handleEmojiClick}
               buttonElement={
                 <Button
@@ -145,7 +144,7 @@ const HeaderService = ({
               )}
             </div>
           </div>
-        </div>{" "}
+        </div>
         {isToastPop && <Toast onClick={closeToast}>URL이 복사되었습니다</Toast>}
       </div>
     </div>
