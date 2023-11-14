@@ -7,7 +7,7 @@ import style from "./RollingPaperPage.module.css";
 import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 
-const PostEditPage = () => {
+const RollingPaperEditPage = () => {
   const { id } = useParams();
   const { loading, data } = useAsync(getRecipientRead, { id });
   const {
@@ -52,4 +52,4 @@ const PostEditPage = () => {
   );
 };
 
-export default PostEditPage;
+export default RollingPaperEditPage;
