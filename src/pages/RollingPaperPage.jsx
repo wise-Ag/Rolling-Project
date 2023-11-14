@@ -6,10 +6,12 @@ import { useAsync } from "../hooks/useAsync";
 import style from "./RollingPaperPage.module.css";
 import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
+import { Navigate } from "react-router-dom";
 
 const PostPage = () => {
   const { id } = useParams();
   const { loading, data } = useAsync(getRecipientRead, { id });
+
   const {
     name,
     messageCount,
@@ -31,6 +33,9 @@ const PostPage = () => {
     : {};
 
   if (loading) return <div>loading</div>;
+  if (data == false) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className={style.root}>
       <Header />
