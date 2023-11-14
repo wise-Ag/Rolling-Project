@@ -1,6 +1,6 @@
 import Card from "../Card";
 import CardButtonImage from "../CardImage/CardButtonImage";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import getRecipientMessages from "../../../apis/getRecipientMessages";
 import { useEffect, useState } from "react";
@@ -13,6 +13,8 @@ const CardContainer = () => {
   const [offset, setOffset] = useState(8);
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
+  const location = useLocation();
+  const isEditPage = location.pathname.endsWith("edit");
 
   const { data } = useAsync(getRecipientMessages, {
     recipientId: id,
@@ -57,9 +59,11 @@ const CardContainer = () => {
 
   return (
     <>
-      <Card>
-        <CardButtonImage id={id} />
-      </Card>
+      {!isEditPage && (
+        <Card>
+          <CardButtonImage id={id} />
+        </Card>
+      )}
       {items?.map((item, index) => {
         return (
           <CardBody
