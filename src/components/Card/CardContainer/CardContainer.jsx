@@ -3,8 +3,9 @@ import CardButtonImage from "../CardImage/CardButtonImage";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import getRecipientMessages from "../../../apis/getRecipientMessages";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CardBody from "../CardBody/CardBody";
+import useScroll from "../../../hooks/useScroll";
 
 const CardContainer = () => {
   const LIMIT = 8;
@@ -25,22 +26,7 @@ const CardContainer = () => {
     }
   }, [data]);
 
-  const myRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      console.log(entry);
-      setIsVisible(entry.isIntersecting);
-    });
-    if (myRef.current) {
-      observer.observe(myRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [items]);
+  const myRef = useScroll({ items, setIsVisible });
 
   const fetchMoreData = async () => {
     const data = await getRecipientMessages({
@@ -52,7 +38,6 @@ const CardContainer = () => {
     const {
       result: { count, results },
     } = data;
-
     if (offset > count) return;
 
     setItems((prev) => [...prev, ...results]);
@@ -67,7 +52,6 @@ const CardContainer = () => {
         return;
       }
     }
-    console.log(Isvisible);
     if (Isvisible) {
       fetchMoreData();
     }
@@ -83,9 +67,9 @@ const CardContainer = () => {
           <CardBody
             key={item.id}
             item={item}
-            myRef={myRef}
-            index={index}
             items={items}
+            index={index}
+            myRef={myRef}
           />
         );
       })}
