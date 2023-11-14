@@ -9,10 +9,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="list" element={<Index />} />
-        <Route path="post" element={<Index />} /* 정진호 */ />
+        <Route path="post" element={<Index />} />
         <Route path="post/:id" element={<RollingPaperPage />} />
         <Route path="post/:id/edit" element={<Index />} />
-        <Route path="post/:id/message" element={<Index />} /* 정진호 */ />
+        <Route path="post/:id/message" element={<Index />} />
       </Routes>
     </BrowserRouter>
   );

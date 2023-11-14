@@ -11,8 +11,7 @@ import bin from "../../../assets/images/icons/bin.svg";
 import { useLocation } from "react-router-dom";
 import { useModal } from "../../../hooks/useModal";
 import { convertDateFormat } from "../../../utils/convertDateFormat";
-//
-const CardBody = ({ items, item, myRef, index }) => {
+const CardBody = ({ item, items, index, myRef }) => {
   const location = useLocation();
   const isEditPage = location.pathname.endsWith("edit");
   const { profileImageURL, sender, relationship, content, createdAt } = item;
@@ -35,8 +34,7 @@ const CardBody = ({ items, item, myRef, index }) => {
           <div className={style.divider}></div>
           <CardContent content={content} />
           <CardDate createdAt={prettyCreatedAt} />
-
-          {index === items?.length - 1 && <p ref={myRef}>마지막요소</p>}
+          {index === items?.length - 1 && <p ref={myRef}></p>}
         </Card>
       </div>
       {isModalVisible && (
