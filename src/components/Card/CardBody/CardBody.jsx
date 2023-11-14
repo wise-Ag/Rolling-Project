@@ -23,6 +23,11 @@ const CardBody = ({ items, item, myRef, index }) => {
 
   const { isModalVisible, openModalFunc, closeModalFunc } = useModal();
 
+  const handleDelete = () => {
+    // 카드 삭제하는 코드
+    console.log("삭제되었습니다.");
+  };
+
   return (
     <>
       <div className={style.root} onClick={openModalFunc}>
@@ -30,7 +35,11 @@ const CardBody = ({ items, item, myRef, index }) => {
           <div className={style.header}>
             <CardProfileImage profileImageURL={profileImageURL} />
             <CardProfile sender={sender} relationship={relationship} />
-            {isEditPage && <img className={style.bin} src={bin} alt="bin" />}
+            {isEditPage && (
+              <Button onClick={handleDelete}>
+                <img className={style.bin} src={bin} alt="bin" />
+              </Button>
+            )}
           </div>
           <div className={style.divider}></div>
           <CardContent content={content} />
@@ -39,7 +48,7 @@ const CardBody = ({ items, item, myRef, index }) => {
           {index === items?.length - 1 && <p ref={myRef}>마지막요소</p>}
         </Card>
       </div>
-      {isModalVisible && (
+      {isModalVisible && !isEditPage && (
         <Modal>
           <CardModal item={item} createdAt={prettyCreatedAt} />
           <Button onClick={closeModalFunc} width="12" size="40" color="primary">
