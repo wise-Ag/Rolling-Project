@@ -20,6 +20,7 @@ const RollingPaperEditPage = () => {
   } = data;
 
   const handleDeletePage = () => {
+    // 페이지 삭제하는 코드
     console.log("페이지가 삭제되었습니다.");
   };
 
