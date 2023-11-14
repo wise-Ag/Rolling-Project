@@ -1,27 +1,28 @@
-// ref를 리턴 하기
-// api받는동안 중복 노출 트리거 되지 않도록 예외처리
-// react intersection observer
+import { useEffect, useMemo, useRef, useState } from "react";
 
-import { useEffect, useRef } from "react";
-
-const useScroll = ({ items, setIsVisible }) => {
+const useScroll = () => {
+  const [Isvisible, setIsVisible] = useState();
   const myRef = useRef();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      setIsVisible(entry.isIntersecting);
-    });
+  const createObserver = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    setIsVisible(entry.isIntersecting);
+  });
 
+  const observer = useMemo(() => createObserver, [Isvisible]);
+  useEffect(() => {
     if (myRef.current) {
       observer.observe(myRef.current);
     }
     return () => {
       observer.disconnect();
     };
-  }, [items]);
+  }, [Isvisible, myRef.current]);
 
-  return myRef;
+  return {
+    Isvisible,
+    myRef,
+  };
 };
 
 export default useScroll;

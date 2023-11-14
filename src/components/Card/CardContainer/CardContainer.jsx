@@ -13,7 +13,6 @@ const CardContainer = () => {
   const [offset, setOffset] = useState(8);
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
-  const [Isvisible, setIsVisible] = useState(false);
 
   const { data } = useAsync(getRecipientMessages, {
     recipientId: id,
@@ -26,7 +25,7 @@ const CardContainer = () => {
     }
   }, [data]);
 
-  const myRef = useScroll({ items, setIsVisible });
+  const { Isvisible, myRef } = useScroll();
 
   const fetchMoreData = async () => {
     const data = await getRecipientMessages({
@@ -42,7 +41,6 @@ const CardContainer = () => {
 
     setItems((prev) => [...prev, ...results]);
     setOffset((prev) => prev + 8);
-    setIsVisible(false);
     setCount(count);
   };
 
