@@ -5,7 +5,7 @@ const KaKaoshareController = ({ children, onClick }) => {
   return (
     <>
       <div className={styles.sharePopoverButton}>
-        <Button onClick={onClick}>{children}</Button>
+        <Button onMouseDown={onClick}>{children}</Button>
       </div>
     </>
   );
