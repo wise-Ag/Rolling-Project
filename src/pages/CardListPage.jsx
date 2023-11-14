@@ -11,16 +11,30 @@ const CardListPage = () => {
 
   return (
     <>
-      <Header button={<button>테스트 버튼</button> /* 버튼 컴포넌트 받아야함 */} />
+      <Header
+        button={
+          <Button color={"outlined"} size={"40"}>
+            롤링 페이퍼 만들기
+          </Button>
+        }
+      />
       <div className={styles.cardListPage}>
         <div className={styles.contentWrapper}>
           <div className={styles.container}>
             <h2 className={styles.listName}>인기 롤링페이퍼 🔥</h2>
-            {isLoading ? <p>Loading...</p> : <CardListContainer data={popular} />}
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <CardListContainer data={popular} />
+            )}
           </div>
           <div className={styles.container}>
             <h2 className={styles.listName}>최근에 만든 롤링 페이퍼 ⭐️️</h2>
-            {isLoading ? <p>Loading...</p> : <CardListContainer data={recent} />}
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <CardListContainer data={recent} />
+            )}
           </div>
         </div>
         <Button shape={"primary"} size={"56"} width={"28"}>

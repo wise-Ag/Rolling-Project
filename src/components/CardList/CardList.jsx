@@ -9,50 +9,71 @@ const CardList = ({
   onTouchStart,
   onTouchMove,
   onTouchEnd,
+  onMouseOver,
   onNextSlide,
   onPrevSlide,
   currentIndex,
 }) => {
   return (
     <div className={styles.cardListContainer}>
-      <div className={styles.cardListWrapper}>
-        <ul
-          className={styles.cardList}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-          ref={containerRef}
-        >
-          {data.map(({ id, name, backgroundColor, backgroundImageURL, messageCount, recentMessages }) => {
-            const profileImageURLs = recentMessages.map((message) => message.profileImageURL);
+      <div
+        onMouseOver={onMouseOver}
+        className={styles.cardListWrapper}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        <ul className={styles.cardList} ref={containerRef}>
+          {data.map(
+            ({
+              id,
+              name,
+              backgroundColor,
+              backgroundImageURL,
+              messageCount,
+              recentMessages,
+            }) => {
+              const profileImageURLs = recentMessages.map(
+                (message) => message.profileImageURL,
+              );
 
-            return (
-              <li key={id}>
-                <CardListItemContainer
-                  recipientId={id}
-                  recipientName={name}
-                  backgroundColor={backgroundColor}
-                  backgroundImageURL={backgroundImageURL}
-                  messageCount={messageCount}
-                  profileImageURLs={profileImageURLs}
-                />
-              </li>
-            );
-          })}
+              return (
+                <li key={id}>
+                  <CardListItemContainer
+                    recipientId={id}
+                    recipientName={name}
+                    backgroundColor={backgroundColor}
+                    backgroundImageURL={backgroundImageURL}
+                    messageCount={messageCount}
+                    profileImageURLs={profileImageURLs}
+                  />
+                </li>
+              );
+            },
+          )}
         </ul>
       </div>
-      {data.length > 4 && (
+      {data.length > 3.9 && (
         <div className={styles.navigationButtons}>
           {currentIndex !== 0 && (
             <div className={styles.previousButton}>
-              <Button shape={"arrow"} direction={"left"} onClick={onPrevSlide} />
+              <Button
+                shape={"arrow"}
+                direction={"left"}
+                onClick={onPrevSlide}
+              />
             </div>
           )}
-          {currentIndex !== data.length - 4 && (
-            <div className={styles.nextButton}>
-              <Button shape={"arrow"} direction={"right"} onClick={onNextSlide} />
-            </div>
-          )}
+          {currentIndex !== data.length - 3.9 &&
+            currentIndex !== data.length - 4 && (
+              <div className={styles.nextButton}>
+                <Button
+                  shape={"arrow"}
+                  direction={"right"}
+                  onClick={onNextSlide}
+                />
+              </div>
+            )}
         </div>
       )}
     </div>

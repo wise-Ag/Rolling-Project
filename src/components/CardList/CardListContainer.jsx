@@ -1,7 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 
 import CardList from "./CardList";
-import { getVisibleCardCount, calculateTransform } from "./CardListUtils";
+
+const isTabletorMobile = window.innerWidth <= 1199;
+
+const getVisibleCardCount = (data) => {
+  // 테블릿 및 모바일 사이즈에 따라 다른 가시 카드 수를 반환
+  return isTabletorMobile
+    ? Math.min(data.length / 1.9, data.length)
+    : Math.min(3.9, data.length);
+};
+
+const calculateTransform = (
+  currentIndex,
+  containerWidth,
+  visibleCount,
+  deltaX = 0,
+) => {
+  const cardWidth = containerWidth / visibleCount;
+  return `translateX(${-currentIndex * cardWidth + deltaX}px)`;
+};
 
 const CardListContainer = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,15 +37,30 @@ const CardListContainer = ({ data }) => {
     const containerWidth = containerRef.current.offsetWidth;
     const visibleCount = getVisibleCardCount(data);
 
-    const isFirstIndex = currentIndex === 0;
-    const isLastIndex = currentIndex === data.length - visibleCount;
-
-    if ((isFirstIndex && deltaX > 0) || (isLastIndex && deltaX < 0)) {
+    // 처음 또는 마지막 카드에서 더 이상 스크롤하지 못하도록 설정
+    if (
+      (currentIndex === 0 && deltaX > 0) ||
+      (currentIndex === data.length - visibleCount && deltaX < 0)
+    ) {
       return;
     }
 
+    // 최대 스크롤 거리 계산
+    const maxScrollDistance = (data.length - visibleCount) * containerWidth;
+
+    // deltaX를 최대 스크롤 거리와 비교하여 조정
+    const adjustedDeltaX = Math.max(deltaX, -maxScrollDistance);
+
+    // 부드러운 이동을 위해 transition을 일시적으로 제거
     containerRef.current.style.transition = "none";
-    containerRef.current.style.transform = calculateTransform(currentIndex, containerWidth, visibleCount, deltaX);
+
+    // 변환 계산 함수를 사용하여 현재 인덱스와 조정된 deltaX를 기반으로 새로운 transform 설정
+    containerRef.current.style.transform = calculateTransform(
+      currentIndex,
+      containerWidth,
+      visibleCount,
+      adjustedDeltaX,
+    );
   };
 
   const handleTouchEnd = (e) => {
@@ -36,17 +69,23 @@ const CardListContainer = ({ data }) => {
     const newTouchEndX = e.changedTouches[0].clientX;
     const threshold = containerWidth / 100;
 
-    const isSwipeLeft = startX - newTouchEndX > threshold;
-    const isSwipeRight = startX - newTouchEndX < -threshold;
-
-    if (isSwipeLeft && currentIndex < data.length - visibleCount) {
-      setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, data.length - visibleCount));
+    // 우측으로 스와이프
+    if (
+      startX - newTouchEndX > threshold &&
+      currentIndex < data.length - visibleCount
+    ) {
+      setCurrentIndex((prevIndex) =>
+        Math.min(prevIndex + 1, data.length - visibleCount),
+      );
     }
-    if (isSwipeRight && currentIndex > 0) {
+
+    // 좌측으로 스와이프
+    if (startX - newTouchEndX < -threshold && currentIndex > 0) {
       setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     }
 
-    containerRef.current.style.transition = "transform 0.5s ease-in-out";
+    // 스와이프 완료 후 부드러운 이동을 위한 transition 설정
+    containerRef.current.style.transition = "transform 0.3s ease-in-out";
   };
 
   const handleNextSlide = () => {
@@ -57,11 +96,16 @@ const CardListContainer = ({ data }) => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
   };
 
+  // 컴포넌트가 렌더링될 때 초기 위치 설정
   useEffect(() => {
     const containerWidth = containerRef.current.offsetWidth;
     const visibleCount = getVisibleCardCount(data);
 
-    containerRef.current.style.transform = calculateTransform(currentIndex, containerWidth, visibleCount);
+    containerRef.current.style.transform = calculateTransform(
+      currentIndex,
+      containerWidth,
+      visibleCount,
+    );
   }, [currentIndex, data]);
 
   return (

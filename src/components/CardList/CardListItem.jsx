@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import styles from "./CardListItem.module.css";
@@ -7,6 +8,7 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import BadgeEmojiList from "../BadgeEmoji/BadgeEmojiList";
 
 const CardListItem = ({
+  recipientId,
   backgroundImageStyle,
   hasBackgroundImage,
   recipientName,
@@ -17,21 +19,32 @@ const CardListItem = ({
   emojiData,
 }) => {
   return (
-    <div style={backgroundImageStyle} className={styles.container}>
-      <div className={clsx(styles.card, backgroundImageURL ? "" : styles[backgroundColor])}>
-        <RollingPaperInfo style={"card"} recipientName={recipientName} hasBackgroundImage={hasBackgroundImage}>
-          <ProfileInfo
+    <Link to={`/post/${recipientId}`}>
+      <div style={backgroundImageStyle} className={styles.container}>
+        <div
+          className={clsx(
+            styles.card,
+            backgroundImageURL ? "" : styles[backgroundColor],
+          )}
+        >
+          <RollingPaperInfo
             style={"card"}
-            messageCount={messageCount}
-            profileImageURLs={profileImageURLs}
+            recipientName={recipientName}
             hasBackgroundImage={hasBackgroundImage}
-          />
-        </RollingPaperInfo>
-        <div className={styles.BadgeEmojiListWrapper}>
-          <BadgeEmojiList emojis={emojiData} isVisibleButton={false} />
+          >
+            <ProfileInfo
+              style={"card"}
+              messageCount={messageCount}
+              profileImageURLs={profileImageURLs}
+              hasBackgroundImage={hasBackgroundImage}
+            />
+          </RollingPaperInfo>
+          <div className={styles.BadgeEmojiListWrapper}>
+            <BadgeEmojiList emojis={emojiData} isVisibleButton={false} />
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

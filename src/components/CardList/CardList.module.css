@@ -3,7 +3,6 @@
 }
 
 .cardListWrapper {
-  display: flex;
   overflow: hidden;
   position: relative;
   width: 113.6rem;
@@ -32,7 +31,7 @@
 }
 
 /* Tablet 화면 크기 (1199px 이하) */
-@media screen and (max-width: 1248px) {
+@media screen and (max-width: 1199px) {
   .cardListWrapper {
     display: flex;
     overflow: hidden;

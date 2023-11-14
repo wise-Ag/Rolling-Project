@@ -4,10 +4,10 @@ import CardListItem from "./CardListItem";
 const CardListItemContainer = ({
   recipientId,
   recipientName,
-  backgroundColor = "",
-  backgroundImageURL = "",
+  backgroundColor,
+  backgroundImageURL,
   messageCount,
-  profileImageURLs = "",
+  profileImageURLs,
 }) => {
   const emojiData = useEmoji(recipientId);
 
@@ -23,6 +23,7 @@ const CardListItemContainer = ({
 
   return (
     <CardListItem
+      recipientId={recipientId}
       backgroundImageStyle={backgroundImageStyle}
       hasBackgroundImage={hasBackgroundImage}
       recipientName={recipientName}
