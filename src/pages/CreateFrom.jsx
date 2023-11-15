@@ -5,11 +5,11 @@ import styles from "./CreateFrom.module.css";
 import MarkDown from "../components/TextField/MarkDown";
 import Dropdown from "../components/TextField/Dropdown";
 import Button from "../components/Button/Button";
-import postRecipientMessage from "../apis/postRecipientMessage";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProfileImageFileInput from "../components/ProfileImageFileInput/ProfileImageFileInput";
 import { useAsync } from "../hooks/useAsync";
 import getProfileImages from "../apis/getProfileImages";
+import useAuth from "../hooks/useAuth";
 
 const CreateFrom = () => {
   const {
@@ -25,15 +25,16 @@ const CreateFrom = () => {
 
   const [imgValue, setImgValue] = useState();
 
+  const auth = useAuth();
+
   useEffect(() => {
+    auth.redirectFrom();
     if (imageUrls) {
       setImgValue(imageUrls[0]);
     }
   }, [imageUrls]);
 
   const [isLoading, setIsloading] = useState(false);
-
-  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -62,10 +63,7 @@ const CreateFrom = () => {
 
     try {
       setIsloading(true);
-      const { response } = await postRecipientMessage(dataset);
-      if (response.ok) {
-        navigate(`/post/${id}`);
-      }
+      await auth.tryMessage(dataset);
     } finally {
       setIsloading(false);
     }

@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button/Button";
 import Header from "../components/Header/Header";
 import Input from "../components/TextField/Input";
 import styles from "./CreateTo.module.css";
 import Background from "../components/Option/Background";
 import useAuth from "../hooks/useAuth";
-import { Navigate } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import getBackgroundImages from "../apis/getBackgroundImages";
+import useInputController from "../hooks/useInputController";
 
 function CreateTo() {
   // 이름 input value 추적
-  const [to, setTo] = useState("");
+  const inputTo = useInputController({
+    errorText: "이름은 비워둘 수 없습니다",
+  });
 
   //  버튼 토글에 따라서 구성할 조건식
   const [colorButton, setColorButton] = useState(true);
@@ -25,13 +27,9 @@ function CreateTo() {
 
   const auth = useAuth();
 
-  if (auth.isAuth()) {
-    return <Navigate to={`/post/${auth.id}`} />;
-  }
-
-  const handleChange = (e) => {
-    setTo(e.target.value);
-  };
+  useEffect(() => {
+    auth.redirectTo();
+  }, []);
 
   const handleToggleButtonClick = () => {
     setColorButton((color) => !color);
@@ -42,7 +40,7 @@ function CreateTo() {
     e.preventDefault();
 
     const dataset = {
-      name: to,
+      name: inputTo.value,
       backgroundColor: colorOpt,
       backgroundImageURL: imgOpt,
     };
@@ -72,9 +70,11 @@ function CreateTo() {
               <h2 className={styles.title}>To.</h2>
             </label>
             <Input
+              onBlur={inputTo.handleBlur}
+              onFocus={inputTo.handleFocus}
               placeholder="받는 사람 이름을 입력해 주세요"
-              onChange={handleChange}
-              value={to}
+              onChange={inputTo.handleChange}
+              value={inputTo.value}
             ></Input>
           </div>
           <div>
