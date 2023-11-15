@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import styles from "./RollingPaperInfo.module.css";
 
 /**
@@ -8,11 +9,11 @@ import styles from "./RollingPaperInfo.module.css";
  * @param {string[]} props.profileImageURLs - 프로필 이미지 URL 목록.
  * @returns {JSX.Element} - 롤링 페이퍼 정보 컴포넌트의 JSX 엘리먼트.
  */
-const RollingPaperInfo = ({ recipientName, children }) => {
+const RollingPaperInfo = ({ style = "", recipientName, hasBackgroundImage = false, children }) => {
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, styles[style])}>
       <div>
-        <h1 className={styles.name}>To. {recipientName}</h1>
+        <h1 className={clsx(styles.name, hasBackgroundImage && styles.white)}>To. {recipientName}</h1>
       </div>
       {children}
     </div>

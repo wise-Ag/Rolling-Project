@@ -20,10 +20,19 @@
   align-items: center;
 }
 
+.profileInfoContainer.card {
+  gap: 1.2rem;
+  flex-direction: column;
+}
+
 .profileImageListContainer {
   display: flex;
   align-items: center;
   position: relative;
+}
+
+.profileImageListContainer.card {
+  align-items: baseline;
 }
 
 .profileImageWrapper {
@@ -37,6 +46,10 @@
   height: 2.8rem;
   background: var(--white, #b4b4b4);
   border-radius: 5rem;
+}
+
+.profileImageWrapper.card {
+  top: 1.2rem;
 }
 
 .profileImageWrapper:nth-child(1) {
@@ -62,6 +75,10 @@
   color: #484848;
 }
 
+.profileImage {
+  height: 2.8rem;
+}
+
 .description {
   font-family: Pretendard;
   font-size: 1.8rem;
@@ -69,14 +86,28 @@
   color: var(--gray-900, #181818);
 }
 
+.description.card {
+  position: relative;
+  top: 3.6rem;
+  font-size: 1.6rem;
+}
+
 .accent {
   font-weight: 700;
 }
 
+.white {
+  color: var(--white, #fff);
+}
+
 /* Tablet 화면 크기 (1199px 이하) */
-@media screen and (max-width: 1248px) {
+@media screen and (max-width: 1199px) {
   .profileInfoContainer {
     display: none;
+  }
+
+  .profileInfoContainer.card {
+    display: flex;
   }
 }
 
@@ -84,5 +115,8 @@
 @media screen and (max-width: 767px) {
   .profileInfoContainer {
     display: none;
+  }
+  .profileInfoContainer.card {
+    display: flex;
   }
 }
