@@ -11,7 +11,7 @@ import bin from "../../../assets/images/icons/bin.svg";
 import { useLocation } from "react-router-dom";
 import { useModal } from "../../../hooks/useModal";
 import { convertDateFormat } from "../../../utils/convertDateFormat";
-import deleteRecipient from "../../../apis/deleteRecipient";
+import deleteMessage from "../../../apis/deleteMessage";
 
 const CardBody = ({ item, items, index, myRef, setItems }) => {
   const location = useLocation();
@@ -35,7 +35,7 @@ const CardBody = ({ item, items, index, myRef, setItems }) => {
 
     try {
       // 서버에 삭제 요청
-      await deleteRecipient({ id: item.id });
+      await deleteMessage({ id: item.id });
 
       // 화면에서 카드 삭제
       setItems((prevCards) => prevCards.filter((card) => card.id !== item.id));

@@ -31,7 +31,7 @@ const apiConfig = {
       list: "/profile-images/",
     },
     messages: {
-      delete: (id) => `/${TEAM}/messages/${id}/messages_delete/`,
+      delete: (id) => `/${TEAM}/messages/${id}/`,
     },
     recipients: {
       list: `/${TEAM}/recipients/`,
