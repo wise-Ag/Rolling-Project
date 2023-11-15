@@ -50,7 +50,7 @@ const CreateFrom = () => {
     e.preventDefault();
 
     const dataset = {
-      recipientId: inputFrom.id,
+      recipientId: auth.id,
       sender: inputFrom.value,
       profileImageURL: imgValue,
       relationship: relation.value,
