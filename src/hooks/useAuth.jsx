@@ -20,14 +20,14 @@ const useAuth = () => {
   };
 
   // 공통적으로 다 post/id로 보내주는 거 같음
-  const navigateToPostID = () => {
+  const navigateToPostID = (value) => {
     navigate(`/post/${value}`);
   };
 
   // 이미 페이지가 있다면 새로운 페이지 생성 못하게 리다이렉트
   const redirectTo = () => {
     if (isAuth()) {
-      navigateToPostID();
+      navigateToPostID(value);
     }
   };
 
@@ -35,7 +35,7 @@ const useAuth = () => {
   const redirectFrom = () => {
     setValue(getItem);
     if (value === id) {
-      navigateToPostID();
+      navigateToPostID(value);
     }
   };
 
@@ -45,8 +45,10 @@ const useAuth = () => {
 
     if (response.ok) {
       localStorage.setItem("ID", result.id);
-      setValue(result.id);
-      navigateToPostID();
+      console.log(result.id);
+      setValue(getItem);
+      console.log(value);
+      navigateToPostID(value);
     }
   };
 
@@ -54,7 +56,7 @@ const useAuth = () => {
   const tryMessage = async (dataset) => {
     const { response } = await postRecipientMessage(dataset);
     if (response.ok) {
-      navigateToPostID();
+      navigateToPostID(id);
     }
   };
 
