@@ -10,7 +10,7 @@ const useAuth = () => {
   // 지금 로그인이 되어있는지 확인해야할 때
   // id 값이
   const isAuth = () => {
-    if (id !== undefined) return true;
+    if (id !== null) return true;
   };
 
   const tryLogin = async (dataset) => {
