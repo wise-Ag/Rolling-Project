@@ -5,7 +5,8 @@ import postRecipientMessage from "../apis/postRecipientMessage";
 
 const useAuth = () => {
   // 일단 선언하면서 ID가 있는지 없는지 확인
-  const getItem = localStorage.getItem("ID");
+  const savedID = "ID";
+  const getItem = localStorage.getItem(savedID);
 
   const [value, setValue] = useState(getItem);
 
@@ -20,8 +21,8 @@ const useAuth = () => {
   };
 
   // 공통적으로 다 post/id로 보내주는 거 같음
-  const navigateToPostID = (value) => {
-    navigate(`/post/${value}`);
+  const navigateToPostID = (id) => {
+    navigate(`/post/${id}`);
   };
 
   // 이미 페이지가 있다면 새로운 페이지 생성 못하게 리다이렉트
@@ -44,11 +45,9 @@ const useAuth = () => {
     const { response, result } = await postRecipientCreate(dataset);
 
     if (response.ok) {
-      localStorage.setItem("ID", result.id);
-      console.log(result.id);
-      setValue(getItem);
-      console.log(value);
-      navigateToPostID(value);
+      localStorage.setItem(savedID, result.id);
+      setValue(result.id);
+      navigateToPostID(result.id);
     }
   };
 
