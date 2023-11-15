@@ -5,7 +5,6 @@ import styles from "./CreateFrom.module.css";
 import MarkDown from "../components/TextField/MarkDown";
 import Dropdown from "../components/TextField/Dropdown";
 import Button from "../components/Button/Button";
-import { useParams } from "react-router-dom";
 import ProfileImageFileInput from "../components/ProfileImageFileInput/ProfileImageFileInput";
 import { useAsync } from "../hooks/useAsync";
 import getProfileImages from "../apis/getProfileImages";
@@ -47,13 +46,11 @@ const CreateFrom = () => {
 
   const [isLoading, setIsloading] = useState(false);
 
-  const { id } = useParams();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const dataset = {
-      recipientId: id,
+      recipientId: inputFrom.id,
       sender: inputFrom.value,
       profileImageURL: imgValue,
       relationship: relation.value,
