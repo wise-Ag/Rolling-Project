@@ -8,6 +8,7 @@ import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 import Button from "../components/Button/Button";
 import deleteRecipient from "../apis/deleteRecipient";
+import LocaleContext from "../contexts/LocaleContext";
 
 const RollingPaperEditPage = () => {
   const { id } = useParams();
@@ -60,26 +61,28 @@ const RollingPaperEditPage = () => {
     return <Navigate to="/" />;
   }
   return (
-    <div className={style.root}>
-      <Header />
-      <HeaderService
-        recipientId={id}
-        recipientName={name}
-        messageCount={messageCount}
-        profileImageURLs={recentProfileImg}
-      />
-      <div
-        className={clsx(style.cardSection, {
-          [style[backgroundColor]]: !backgroundImageURL,
-        })}
-        style={background}
-      >
-        <Button className={style.deleteButton} onClick={handleDeletePage}>
-          삭제하기
-        </Button>
-        <Cards />
+    <LocaleContext.Provider value={{ name: name }}>
+      <div className={style.root}>
+        <Header />
+        <HeaderService
+          recipientId={id}
+          recipientName={name}
+          messageCount={messageCount}
+          profileImageURLs={recentProfileImg}
+        />
+        <div
+          className={clsx(style.cardSection, {
+            [style[backgroundColor]]: !backgroundImageURL,
+          })}
+          style={background}
+        >
+          <Button className={style.deleteButton} onClick={handleDeletePage}>
+            삭제하기
+          </Button>
+          <Cards />
+        </div>
       </div>
-    </div>
+    </LocaleContext.Provider>
   );
 };
 
