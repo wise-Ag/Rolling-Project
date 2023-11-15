@@ -32,7 +32,6 @@ const CardContainer = () => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      console.log(entry);
       setIsVisible(entry.isIntersecting);
     });
     if (myRef.current) {
@@ -69,7 +68,6 @@ const CardContainer = () => {
         return;
       }
     }
-    console.log(Isvisible);
     if (Isvisible) {
       fetchMoreData();
     }
