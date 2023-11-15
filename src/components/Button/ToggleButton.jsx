@@ -1,8 +1,11 @@
+import { useState } from "react";
 import styles from "./ToggleButton.module.css";
 
 const ToggleButton = ({ toggle, setToggle }) => {
+  const [antiToggle, setAntiToggle] = useState(false);
   const handleToggleButtonClick = () => {
     setToggle((curr) => !curr);
+    setAntiToggle((curr) => !curr);
   };
 
   return (
@@ -16,7 +19,7 @@ const ToggleButton = ({ toggle, setToggle }) => {
       </button>
       <button
         className={styles.toggleButton}
-        disabled={toggle}
+        disabled={antiToggle}
         onClick={handleToggleButtonClick}
       >
         이미지
