@@ -7,6 +7,7 @@ import style from "./RollingPaperPage.module.css";
 import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 import { Navigate } from "react-router-dom";
+import LocaleContext from "../contexts/LocaleContext";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -36,24 +37,26 @@ const PostPage = () => {
     return <Navigate to="/" />;
   }
   return (
-    <div className={style.root}>
-      <Header />
-      <HeaderService
-        recipientId={id}
-        recipientName={name}
-        messageCount={messageCount}
-        profileImageURLs={recentProfileImg}
-      />
+    <LocaleContext.Provider value={{ name: name }}>
+      <div className={style.root}>
+        <Header />
+        <HeaderService
+          recipientId={id}
+          recipientName={name}
+          messageCount={messageCount}
+          profileImageURLs={recentProfileImg}
+        />
 
-      <div
-        className={clsx(style.cardSection, {
-          [style[backgroundColor]]: !backgroundImageURL,
-        })}
-        style={background}
-      >
-        <Cards />
+        <div
+          className={clsx(style.cardSection, {
+            [style[backgroundColor]]: !backgroundImageURL,
+          })}
+          style={background}
+        >
+          <Cards />
+        </div>
       </div>
-    </div>
+    </LocaleContext.Provider>
   );
 };
 
