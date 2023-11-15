@@ -9,9 +9,16 @@ import Cards from "../components/Cards/Cards";
 import Button from "../components/Button/Button";
 import deleteRecipient from "../apis/deleteRecipient";
 import LocaleContext from "../contexts/LocaleContext";
+import { useEffect } from "react";
 
 const RollingPaperEditPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const authId = localStorage.getItem("ID");
+
+  useEffect(() => {
+    if (authId !== id) navigate("/");
+  }, []);
 
   const { loading, data } = useAsync(getRecipientRead, { id });
   const {
@@ -21,7 +28,6 @@ const RollingPaperEditPage = () => {
     backgroundColor,
     backgroundImageURL,
   } = data;
-  const navigate = useNavigate();
 
   const handleDeletePage = async () => {
     // 삭제 확인
