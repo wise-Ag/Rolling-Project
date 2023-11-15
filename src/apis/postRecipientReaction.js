@@ -10,7 +10,11 @@ import { apiConfig } from "./apiConfig";
  * @param {string} [params.type="increase"] - 반응의 유형 ((기본값 : "increase"), "decrease")
  * @returns {Promise} - POST 요청의 비동기 Promise
  */
-const postRecipientReaction = async ({ recipientId, emoji, type = "increase" }) => {
+const postRecipientReaction = async ({
+  recipientId,
+  emoji,
+  type = "increase",
+}) => {
   const endpoint = apiConfig.endpoints.recipients.reactionsCreate(recipientId);
 
   const option = {

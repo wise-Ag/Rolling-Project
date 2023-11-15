@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./HeaderService.module.css";
 
@@ -11,6 +11,11 @@ import shareImage from "../../assets/images/icons/shareIcon.svg";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import Button from "../Button/Button";
 import EmojiAddImage from "../../assets/images/icons/imojiAddIcon.svg";
+import Toast from "../Toast/Toast";
+import { useToast } from "../../hooks/useToast";
+import { useKaKao } from "../../hooks/useKaKao";
+import KaKaoshareController from "../../controller/KaKaoShareController";
+import { copyClipBoard } from "../../utils/copyToClipboard";
 
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
@@ -30,14 +35,21 @@ const HeaderService = ({
   const [emojiData, setEmojiData] = useState([]);
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
+  const { isToastPop, openToast, closeToast } = useToast();
 
+  const myRef = useRef();
   const handleButtonClick = () => {
     setEmojiPopoverOpen(!isEmojiPopoverOpen);
   };
 
+  const handlePasteClick = () => {
+    openToast();
+    copyClipBoard(window.location.href);
+  };
+
   const updateEmojiData = async () => {
     try {
-      const response = await getRecipientReactions({ recipientId, limit: "8" });
+      const response = await getRecipientReactions({ recipientId, limit: "6" });
 
       if (response.result.results) {
         setEmojiData(() =>
@@ -52,6 +64,7 @@ const HeaderService = ({
     }
   };
 
+  const shareKakao = useKaKao();
   const handleEmojiClick = async (emoji) => {
     try {
       await postRecipientReaction({ recipientId, emoji: emoji.emoji });
@@ -63,6 +76,10 @@ const HeaderService = ({
 
   const handleShareClick = () => {
     setSharePopover(!isSharePopover);
+  };
+
+  const handleShareBlur = () => {
+    setSharePopover(false);
   };
 
   useEffect(() => {
@@ -87,7 +104,10 @@ const HeaderService = ({
           <BadgeEmojiList emojis={emojiData} />
           <div className={styles.buttonsContainer}>
             <EmojiPickerPopover
+              myRef={myRef}
+              setEmojiPopoverOpen={setEmojiPopoverOpen}
               isEmojiPopoverOpen={isEmojiPopoverOpen}
+              handleButtonClick={handleButtonClick}
               onEmojiClick={handleEmojiClick}
               buttonElement={
                 <Button
@@ -100,17 +120,24 @@ const HeaderService = ({
                 </Button>
               }
             />
+
             <div className={styles.verticalLine} />
-            <div className={styles.shareButtonContainer}>
+            <div
+              className={styles.shareButtonContainer}
+              onBlur={handleShareBlur}
+            >
               <Button color={"outlined"} size={36} onClick={handleShareClick}>
                 <img src={shareImage} alt="공유 이미지" />
               </Button>
               {isSharePopover && (
                 <div className={styles.sharePopover}>
-                  <button className={styles.sharePopoverButton}>
+                  <KaKaoshareController onClick={shareKakao}>
                     카카오톡 공유
-                  </button>
-                  <button className={styles.sharePopoverButton}>
+                  </KaKaoshareController>
+                  <button
+                    className={styles.sharePopoverButton}
+                    onMouseDown={handlePasteClick}
+                  >
                     URL 공유
                   </button>
                 </div>
@@ -118,6 +145,7 @@ const HeaderService = ({
             </div>
           </div>
         </div>
+        {isToastPop && <Toast onClick={closeToast}>URL이 복사되었습니다</Toast>}
       </div>
     </div>
   );

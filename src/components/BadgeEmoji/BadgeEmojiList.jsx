@@ -22,8 +22,12 @@ const BadgeEmojiList = ({ emojis, isVisibleButton = true }) => {
     setIsButton(!isButton);
   };
 
+  const handleEmojiBlur = () => {
+    setIsButton(false);
+  };
+
   useEffect(() => {
-    setEmojiData([emojis.slice(0, 3), emojis.slice(0, 8)]);
+    setEmojiData([emojis.slice(0, 3), emojis.slice(0, 6)]);
   }, [emojis]);
 
   return (
@@ -37,7 +41,11 @@ const BadgeEmojiList = ({ emojis, isVisibleButton = true }) => {
       </ul>
       {isVisibleButton && (
         <div className={styles.buttonContainer}>
-          <button className={styles.button} onClick={handleButtonClick}>
+          <button
+            className={styles.button}
+            onClick={handleButtonClick}
+            onBlur={handleEmojiBlur}
+          >
             <img src={arrowDownImage} alt="arrow down" />
           </button>
           {isButton && (

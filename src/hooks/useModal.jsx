@@ -12,4 +12,4 @@ const useModal = () => {
 
   return { isModalVisible, openModalFunc, closeModalFunc };
 };
-export {useModal}
+export { useModal };

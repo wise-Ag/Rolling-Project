@@ -14,6 +14,7 @@ const Button = ({
   children,
   onClick,
   onBlur,
+  onMouseDown,
   type = "submit",
   disabled,
 }) => {
@@ -39,6 +40,7 @@ const Button = ({
       style={buttonWidth}
       className={buttonClassName}
       onClick={onClick}
+      onMouseDown={onMouseDown}
       onBlur={onBlur}
     >
       {children}

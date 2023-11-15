@@ -1,6 +1,7 @@
 import EmojiPicker from "emoji-picker-react";
 
 import styles from "./EmojiPickerPopover.module.css";
+import { useEffect } from "react";
 
 /**
  * EmojiPickerPopover 컴포넌트는 이모지 선택 팝오버를 렌더링합니다.
@@ -13,12 +14,26 @@ import styles from "./EmojiPickerPopover.module.css";
  * @returns {JSX.Element} EmojiPickerPopover 컴포넌트를 반환합니다.
  */
 const EmojiPickerPopover = ({
+  myRef,
   isEmojiPopoverOpen,
+  setEmojiPopoverOpen,
   onEmojiClick,
   buttonElement,
 }) => {
+  useEffect(() => {
+    const clickFunc = (e) => {
+      if (myRef.current && !myRef.current.contains(e.target)) {
+        setEmojiPopoverOpen(false);
+      }
+    };
+    document.addEventListener("click", clickFunc);
+    return () => {
+      document.addEventListener("click", clickFunc);
+    };
+  }, [myRef.current]);
+
   return (
-    <div className={styles.emojiPickerPopover}>
+    <div className={styles.emojiPickerPopover} ref={myRef}>
       {buttonElement}
       {isEmojiPopoverOpen && (
         <div className={styles.emojiPopover}>
