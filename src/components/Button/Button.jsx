@@ -29,7 +29,11 @@ const Button = ({
   const buttonWidth = { width: `${width}rem` };
 
   if (as === "Link") {
-    return <Link className={buttonClassName} style={buttonWidth} to={to} />;
+    return (
+      <Link className={buttonClassName} style={buttonWidth} to={to}>
+        {children}
+      </Link>
+    );
   }
 
   return (
