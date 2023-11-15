@@ -98,7 +98,7 @@
 }
 
 /* Tablet 화면 크기 (1199px 이하) */
-@media screen and (max-width: 1248px) {
+@media screen and (max-width: 1199px) {
   .headerService {
     padding: 13px 0px;
   }

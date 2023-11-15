@@ -1,0 +1,64 @@
+.root {
+  margin: 5.8rem auto 0rem;
+  width: 100%;
+  max-width: 72rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 1.2rem;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  width: 100%;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 4.2rem; /* 175% */
+  color: var(--gray-900, #181818);
+  letter-spacing: -0.02rem;
+}
+
+.subTitle {
+  margin-bottom: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem; /* 162.5% */
+  color: var(--gray-500, #555);
+  letter-spacing: -0.016rem;
+}
+
+.toggleButtonContainer {
+  display: flex;
+  margin-bottom: 4.5rem;
+  width: 24.4rem;
+  background-color: var(--gray-300, #ccc);
+  border-radius: 0.6rem;
+}
+
+.toggleButton {
+  padding: 0.7rem 1.6rem;
+  width: 12.2rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  text-align: center;
+  letter-spacing: -0.016rem;
+  border-radius: 0.6rem;
+}
+
+.toggleButton:disabled {
+  border: 2px solid var(--purple-700, #861dee);
+  background-color: var(--White);
+  font-weight: 700;
+  color: var(--purple-700, #861dee);
+}
+
+.button {
+  width: 100%;
+}
