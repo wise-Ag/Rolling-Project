@@ -3,6 +3,7 @@
   justify-content: center;
   padding-top: 12rem;
   padding-bottom: 12rem;
+  position: relative;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,8 +35,9 @@
 .deleteButton {
   flex-shrink: 0;
   position: absolute;
-  top: 60px;
+  top: 70px;
   right: 255px;
+  z-index: 10;
   width: 92px;
   height: 39px;
   background: #9935ff;
@@ -43,13 +45,39 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 26px; /* 162.5% */
+  line-height: 26px;
   color: #fff;
   text-align: center;
   letter-spacing: -0.16px;
   border-radius: 6px;
   @media (max-width: 1248px) {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 91px;
+    position: fixed;
+    top: auto;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    width: auto;
+    border-radius: 12px;
   }
   @media (max-width: 767px) {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: 24px;
+    left: auto;
+    left: 50%; /* 부모 요소를 기준으로 50% 위치에 배치 */
+    width: 320px;
+    border-radius: 12px;
+    transform: translateX(-50%); /* 수평 방향으로 -50% 이동하여 가운데 정렬 */
   }
 }

@@ -25,7 +25,7 @@ const CardBody = ({ item, items, index, myRef, setItems }) => {
   const { isModalVisible, openModalFunc, closeModalFunc } = useModal();
 
   const handleDeleteCard = async (event) => {
-    // 이벤트 버블링 방지
+    // 이벤트 버블링 방지(모달 말고 삭제 버튼이 클릭되도록)
     event.stopPropagation();
 
     // 삭제 확인
@@ -65,7 +65,7 @@ const CardBody = ({ item, items, index, myRef, setItems }) => {
           {index === items?.length - 1 && <p ref={myRef}></p>}
         </Card>
       </div>
-      {isModalVisible && !isEditPage && (
+      {isModalVisible && (
         <Modal>
           <CardModal item={item} createdAt={prettyCreatedAt} />
           <Button onClick={closeModalFunc} width="12" size="40" color="primary">
