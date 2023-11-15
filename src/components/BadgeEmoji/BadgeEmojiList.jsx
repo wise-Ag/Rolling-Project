@@ -11,7 +11,7 @@ import arrowDownImage from "../../assets/images/icons/arrowDownIcon.svg";
  * @param {Object[]} props.emojis - 이모지 데이터의 배열.
  * @returns {JSX.Element} - 뱃지 이모지 목록 컴포넌트의 JSX 엘리먼트.
  */
-const BadgeEmojiList = ({ emojis }) => {
+const BadgeEmojiList = ({ emojis, isVisibleButton = true }) => {
   const [emojiData, setEmojiData] = useState([]);
   const [isButton, setIsButton] = useState(false);
 
@@ -39,24 +39,26 @@ const BadgeEmojiList = ({ emojis }) => {
           </li>
         ))}
       </ul>
-      <div className={styles.buttonContainer}>
-        <button
-          className={styles.button}
-          onClick={handleButtonClick}
-          onBlur={handleEmojiBlur}
-        >
-          <img src={arrowDownImage} alt="arrow down" />
-        </button>
-        {isButton && (
-          <ul className={styles.badgeEmojiListPopover}>
-            {emojiData?.[1]?.map((item) => (
-              <li key={item.emoji}>
-                <BadgeEmoji emoji={item.emoji} count={item.count} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {isVisibleButton && (
+        <div className={styles.buttonContainer}>
+          <button
+            className={styles.button}
+            onClick={handleButtonClick}
+            onBlur={handleEmojiBlur}
+          >
+            <img src={arrowDownImage} alt="arrow down" />
+          </button>
+          {isButton && (
+            <ul className={styles.badgeEmojiListPopover}>
+              {emojiData?.[1]?.map((item) => (
+                <li key={item.emoji}>
+                  <BadgeEmoji emoji={item.emoji} count={item.count} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </div>
   );
 };

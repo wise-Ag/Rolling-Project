@@ -36,6 +36,7 @@ const RollingPaperEditPage = () => {
       // 삭제 성공 메시지 출력
       console.log("페이지가 삭제되었습니다..");
 
+      localStorage.removeItem("ID");
       // LandingPage로 이동
       navigate("/");
     } catch (error) {

@@ -1,7 +1,10 @@
 import clsx from "clsx";
 import styles from "./Button.module.css";
+import { Link } from "react-router-dom";
 
 const Button = ({
+  as,
+  to,
   className,
   shape,
   direction,
@@ -10,10 +13,10 @@ const Button = ({
   width,
   children,
   onClick,
+  onBlur,
+  onMouseDown,
   type = "submit",
   disabled,
-  onMouseDown,
-  onBlur,
 }) => {
   const buttonClassName = clsx(
     styles["button"],
@@ -25,6 +28,10 @@ const Button = ({
   );
 
   const buttonWidth = { width: `${width}rem` };
+
+  if (as === "Link") {
+    return <Link className={buttonClassName} style={buttonWidth} to={to} />;
+  }
 
   return (
     <button

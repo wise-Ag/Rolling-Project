@@ -10,7 +10,7 @@ import { TEAM, apiConfig } from "./apiConfig";
  * @param {string} params.backgroundImageURL - 수신자의 배경 이미지 URL (maxLength: 200, minLength: 1)
  * @returns {Promise} - POST 요청의 비동기 Promise
  */
-const postRecipientMessage = async ({
+const postRecipientCreate = async ({
   name,
   backgroundColor = "beige",
   backgroundImageURL,
@@ -33,4 +33,4 @@ const postRecipientMessage = async ({
   return await requestAPI({ endpoint, option });
 };
 
-export default postRecipientMessage;
+export default postRecipientCreate;

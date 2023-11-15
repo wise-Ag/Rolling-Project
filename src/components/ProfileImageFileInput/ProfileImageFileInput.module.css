@@ -1,0 +1,46 @@
+.root {
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  gap: 1.2rem;
+  flex-direction: column;
+}
+
+.selectedImage {
+  width: 8rem;
+  height: 8rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 99rem;
+}
+
+.subTitle {
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: var(--gray-500, #555);
+  letter-spacing: -0.016rem;
+}
+
+.imageFileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gray-200, #eee);
+  overflow: hidden;
+  width: 5.6rem;
+  height: 5.6rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10rem;
+}
+
+.mapContainer {
+  display: flex;
+  flex-wrap: wrap;
+}

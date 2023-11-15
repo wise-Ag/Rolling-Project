@@ -52,7 +52,7 @@
 }
 
 /* Tablet 화면 크기 (1199px 이하) */
-@media screen and (max-width: 1248px) {
+@media screen and (max-width: 1199px) {
   .header {
     padding: 1.1rem 2.4rem;
   }
