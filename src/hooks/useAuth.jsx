@@ -59,6 +59,7 @@ const useAuth = () => {
   };
 
   return {
+    id,
     value,
     setValue,
     isAuth,
