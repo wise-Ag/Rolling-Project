@@ -31,17 +31,21 @@ const apiConfig = {
       list: "/profile-images/",
     },
     messages: {
-      delete: (id) => `/${TEAM}/messages/${id}/messages_delete/`,
+      delete: (id) => `/${TEAM}/messages/${id}/`,
     },
     recipients: {
       list: `/${TEAM}/recipients/`,
       create: `/${TEAM}/recipients/`,
       read: (id) => `/${TEAM}/recipients/${id}/`,
       delete: (id) => `/${TEAM}/recipients/${id}/`,
-      messagesList: (recipientId) => `/${TEAM}/recipients/${recipientId}/messages/`,
-      messagesCreate: (recipientId) => `/${TEAM}/recipients/${recipientId}/messages/`,
-      reactionsList: (recipientId) => `/${TEAM}/recipients/${recipientId}/reactions/`,
-      reactionsCreate: (recipientId) => `/${TEAM}/recipients/${recipientId}/reactions/`,
+      messagesList: (recipientId) =>
+        `/${TEAM}/recipients/${recipientId}/messages/`,
+      messagesCreate: (recipientId) =>
+        `/${TEAM}/recipients/${recipientId}/messages/`,
+      reactionsList: (recipientId) =>
+        `/${TEAM}/recipients/${recipientId}/reactions/`,
+      reactionsCreate: (recipientId) =>
+        `/${TEAM}/recipients/${recipientId}/reactions/`,
     },
   },
 };

@@ -1,6 +1,5 @@
-import requestAPI from "./api";
 import { apiConfig } from "./apiConfig";
-
+const BASE_URL = apiConfig.baseUrl;
 /**
  * 특정 메시지를 삭제하는 비동기 함수
  * @async
@@ -15,7 +14,8 @@ const deleteMessage = async ({ id }) => {
     method: "DELETE",
   };
 
-  return await requestAPI({ endpoint: `${endpoint}`, option });
+  const response = await fetch(`${BASE_URL}${endpoint}`, option);
+  return { response };
 };
 
 export default deleteMessage;
