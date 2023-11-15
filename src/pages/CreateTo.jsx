@@ -4,10 +4,12 @@ import Header from "../components/Header/Header";
 import Input from "../components/TextField/Input";
 import styles from "./CreateTo.module.css";
 import Background from "../components/Option/Background";
-import postRecipientCreate from "../apis/postRecipientCreate";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
+import { useAsync } from "../hooks/useAsync";
+import getBackgroundImages from "../apis/getBackgroundImages";
 
-const CreateTo = () => {
+function CreateTo() {
   // 이름 input value 추적
   const [to, setTo] = useState("");
 
@@ -21,7 +23,11 @@ const CreateTo = () => {
 
   const [isLoading, setIsloading] = useState(false);
 
-  const navigate = useNavigate();
+  const auth = useAuth();
+
+  if (auth.isAuth()) {
+    return <Navigate to={`/post/${auth.id}`} />;
+  }
 
   const handleChange = (e) => {
     setTo(e.target.value);
@@ -47,23 +53,14 @@ const CreateTo = () => {
 
     try {
       setIsloading(true);
-      const { response, result } = await postRecipientCreate(dataset);
-      if (response.ok) {
-        localStorage.setItem("ID", result.id);
-        navigate(`/post/${result.id}`);
-      }
+      await auth.tryLogin(dataset);
     } finally {
       setIsloading(false);
     }
   };
 
   const colors = ["beige", "blue", "purple", "green"];
-  const images = [
-    "https://ifh.cc/g/LMjp5Q.jpg",
-    "https://ifh.cc/g/9LLavj.jpg",
-    "https://ifh.cc/g/7QKVfm.jpg",
-    "https://ifh.cc/g/Zw6WCW.jpg",
-  ];
+  const { data } = useAsync(getBackgroundImages);
 
   return (
     <>
@@ -80,42 +77,43 @@ const CreateTo = () => {
               value={to}
             ></Input>
           </div>
-          <h2 className={styles.title}>배경화면을 선택해 주세요.</h2>
-          <p className={styles.subTitle}>
-            컬러를 선택하거나, 이미지를 선택할 수 있습니다.
-          </p>
+          <div>
+            <h2 className={styles.title}>배경화면을 선택해 주세요.</h2>
+            <p className={styles.subTitle}>
+              컬러를 선택하거나, 이미지를 선택할 수 있습니다.
+            </p>
 
-          <div className={styles.toggleButtonContainer}>
-            <button
-              className={styles.toggleButton}
-              disabled={colorButton}
-              onClick={handleToggleButtonClick}
-            >
-              색상
-            </button>
-            <button
-              className={styles.toggleButton}
-              disabled={imgButton}
-              onClick={handleToggleButtonClick}
-            >
-              이미지
-            </button>
+            <div className={styles.toggleButtonContainer}>
+              <button
+                className={styles.toggleButton}
+                disabled={colorButton}
+                onClick={handleToggleButtonClick}
+              >
+                색상
+              </button>
+              <button
+                className={styles.toggleButton}
+                disabled={imgButton}
+                onClick={handleToggleButtonClick}
+              >
+                이미지
+              </button>
+            </div>
+
+            {colorButton ? (
+              <Background
+                option={colors}
+                selectedBackground={colorOpt}
+                set={setColorOpt}
+              />
+            ) : (
+              <Background
+                option={data.imageUrls}
+                selectedBackground={imgOpt}
+                set={setImgOpt}
+              />
+            )}
           </div>
-
-          {colorButton ? (
-            <Background
-              option={colors}
-              selectedBackground={colorOpt}
-              set={setColorOpt}
-            />
-          ) : (
-            <Background
-              option={images}
-              selectedBackground={imgOpt}
-              set={setImgOpt}
-            />
-          )}
-
           <Button
             disabled={isLoading}
             className={styles.button}
@@ -129,6 +127,6 @@ const CreateTo = () => {
       </div>
     </>
   );
-};
+}
 
 export default CreateTo;
