@@ -39,7 +39,7 @@ const useAuth = () => {
     }
   };
 
-  //
+  // 롤링 페이퍼 만드는 시도
   const tryLogin = async (dataset) => {
     const { response, result } = await postRecipientCreate(dataset);
 
@@ -50,6 +50,7 @@ const useAuth = () => {
     }
   };
 
+  // 롤링 페이퍼에 메세지 남기는 시도
   const tryMessage = async (dataset) => {
     const { response } = await postRecipientMessage(dataset);
     if (response.ok) {

@@ -10,22 +10,33 @@ import ProfileImageFileInput from "../components/ProfileImageFileInput/ProfileIm
 import { useAsync } from "../hooks/useAsync";
 import getProfileImages from "../apis/getProfileImages";
 import useAuth from "../hooks/useAuth";
+import useInput from "../hooks/useInput";
+import useDropdown from "../hooks/useDropdown";
 
 const CreateFrom = () => {
   const {
     data: { imageUrls },
   } = useAsync(getProfileImages);
 
-  const [from, setFrom] = useState("");
+  const markDownInput = useInput({});
 
-  const [markDownInput, setMarkDownInput] = useState("");
-
-  const [getRelation, setRelation] = useState("지인");
-  const [getFont, setFont] = useState("Noto Sans");
-
-  const [imgValue, setImgValue] = useState();
+  const inputFrom = useInput({
+    errorText: "이름은 비워둘 수 없습니다",
+  });
 
   const auth = useAuth();
+
+  const font = useDropdown({
+    init: "Noto Sans",
+    arr: ["Noto Sans", "Pretendard", "Nanum Gothic"],
+  });
+
+  const relation = useDropdown({
+    init: "지인",
+    arr: ["가족", "친구", "동료", "지인"],
+  });
+
+  const [imgValue, setImgValue] = useState();
 
   useEffect(() => {
     auth.redirectFrom();
@@ -38,26 +49,20 @@ const CreateFrom = () => {
 
   const { id } = useParams();
 
-  const relation = ["가족", "친구", "동료", "지인"];
-  const font = ["Noto Sans", "Pretendard", "Nanum Gothic"];
-
-  const handleChange = (e) => {
-    setFrom(e.target.value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const dataset = {
       recipientId: id,
-      sender: from,
+      sender: inputFrom.value,
       profileImageURL: imgValue,
-      relationship: getRelation,
-      content: markDownInput,
-      font: getFont,
+      relationship: relation.value,
+      content: markDownInput.value,
+      font: font.value,
     };
 
-    if (dataset.name === "") {
+    if (dataset.sender === "") {
+      inputFrom.handleBlur();
       return;
     }
 
@@ -80,9 +85,12 @@ const CreateFrom = () => {
               <h2 className={styles.title}>From.</h2>
             </label>
             <Input
-              placeholder="이름을 입력해 주세요."
-              onChange={handleChange}
-              value={from}
+              placeholder="이름을 입력해 주세요"
+              onBlur={inputFrom.handleBlur}
+              onFocus={inputFrom.handleFocus}
+              onChange={inputFrom.handleChange}
+              errorMessage={inputFrom.errorMessage}
+              value={inputFrom.value}
             ></Input>
           </div>
           <div>
@@ -95,19 +103,15 @@ const CreateFrom = () => {
           </div>
           <div>
             <h2 className={styles.title}>상대와의 관계</h2>
-            <Dropdown
-              option={relation}
-              selected={getRelation}
-              setSelected={setRelation}
-            />
+            <Dropdown option={relation} />
           </div>
           <div>
             <h2 className={styles.title}>내용을 입력해 주세요</h2>
-            <MarkDown setter={setMarkDownInput} />
+            <MarkDown setter={markDownInput.setValue} />
           </div>
           <div>
             <h2 className={styles.title}>폰트 선택</h2>
-            <Dropdown option={font} selected={getFont} setSelected={setFont} />
+            <Dropdown option={font} />
           </div>
           <Button
             disabled={isLoading}

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const useInputController = ({ errorText }) => {
-  const [value, setValue] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+const useInput = ({ errorText = "" }) => {
+  const [value, setValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -10,11 +10,13 @@ const useInputController = ({ errorText }) => {
 
   const handleBlur = () => {
     if (value === "") {
+      console.log("블러");
       setErrorMessage(errorText);
     }
   };
 
   const handleFocus = () => {
+    console.log("뽀커스");
     setErrorMessage("");
   };
 
@@ -28,4 +30,4 @@ const useInputController = ({ errorText }) => {
   };
 };
 
-export default useInputController;
+export default useInput;

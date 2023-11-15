@@ -7,11 +7,11 @@ import Background from "../components/Option/Background";
 import useAuth from "../hooks/useAuth";
 import { useAsync } from "../hooks/useAsync";
 import getBackgroundImages from "../apis/getBackgroundImages";
-import useInputController from "../hooks/useInputController";
+import useInput from "../hooks/useInput";
 
 function CreateTo() {
   // 이름 input value 추적
-  const inputTo = useInputController({
+  const inputTo = useInput({
     errorText: "이름은 비워둘 수 없습니다",
   });
 
@@ -46,6 +46,7 @@ function CreateTo() {
     };
 
     if (dataset.name === "") {
+      inputTo.handleBlur();
       return;
     }
 
@@ -70,10 +71,11 @@ function CreateTo() {
               <h2 className={styles.title}>To.</h2>
             </label>
             <Input
+              placeholder="받는 사람 이름을 입력해 주세요"
               onBlur={inputTo.handleBlur}
               onFocus={inputTo.handleFocus}
-              placeholder="받는 사람 이름을 입력해 주세요"
               onChange={inputTo.handleChange}
+              errorMessage={inputTo.errorMessage}
               value={inputTo.value}
             ></Input>
           </div>
