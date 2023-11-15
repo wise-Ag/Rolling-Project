@@ -12,7 +12,11 @@ import styles from "./EmojiPickerPopover.module.css";
  *
  * @returns {JSX.Element} EmojiPickerPopover 컴포넌트를 반환합니다.
  */
-const EmojiPickerPopover = ({ isEmojiPopoverOpen, onEmojiClick, buttonElement }) => {
+const EmojiPickerPopover = ({
+  isEmojiPopoverOpen,
+  onEmojiClick,
+  buttonElement,
+}) => {
   return (
     <div className={styles.emojiPickerPopover}>
       {buttonElement}
