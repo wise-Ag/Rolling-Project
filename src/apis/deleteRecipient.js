@@ -1,6 +1,7 @@
-import requestAPI from "./api";
+// import requestAPI from "./api";
 import { apiConfig } from "./apiConfig";
 
+const BASE_URL = apiConfig.baseUrl;
 /**
  * 특정 수신자를 삭제하는 비동기 함수
  * @async
@@ -10,12 +11,12 @@ import { apiConfig } from "./apiConfig";
  */
 const deleteRecipient = async ({ id }) => {
   const endpoint = apiConfig.endpoints.recipients.delete(id);
-
   const option = {
     method: "DELETE",
   };
 
-  return await requestAPI({ endpoint, option });
+  const response = await fetch(`${BASE_URL}${endpoint}`, option);
+  return { response };
 };
 
 export default deleteRecipient;
