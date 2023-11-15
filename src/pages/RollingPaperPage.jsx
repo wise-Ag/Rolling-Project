@@ -11,7 +11,6 @@ import { Navigate } from "react-router-dom";
 const PostPage = () => {
   const { id } = useParams();
   const { loading, data } = useAsync(getRecipientRead, { id });
-
   const {
     name,
     messageCount,
@@ -45,6 +44,7 @@ const PostPage = () => {
         messageCount={messageCount}
         profileImageURLs={recentProfileImg}
       />
+
       <div
         className={clsx(style.cardSection, {
           [style[backgroundColor]]: !backgroundImageURL,

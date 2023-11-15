@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import HeaderService from "../components/HeaderService/HeaderService";
 import getRecipientRead from "../apis/getRecipientRead";
@@ -10,6 +10,7 @@ import Button from "../components/Button/Button";
 
 const RollingPaperEditPage = () => {
   const { id } = useParams();
+
   const { loading, data } = useAsync(getRecipientRead, { id });
   const {
     name,
@@ -20,7 +21,6 @@ const RollingPaperEditPage = () => {
   } = data;
 
   const handleDeletePage = () => {
-    // 페이지 삭제하는 코드
     console.log("페이지가 삭제되었습니다.");
   };
 
@@ -37,9 +37,13 @@ const RollingPaperEditPage = () => {
     : {};
 
   if (loading) return <div>loading</div>;
+  if (data == false) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className={styles.root}>
       <Header />
+
       <HeaderService
         recipientId={id}
         recipientName={name}
