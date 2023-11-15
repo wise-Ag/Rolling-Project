@@ -1,4 +1,9 @@
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import {
+  useParams,
+  useNavigate,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import Header from "../components/Header/Header";
 import HeaderService from "../components/HeaderService/HeaderService";
 import getRecipientRead from "../apis/getRecipientRead";
@@ -15,9 +20,14 @@ const RollingPaperEditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const authId = localStorage.getItem("ID");
+  const currentLocation = useLocation();
+  const redirectLocation = currentLocation.pathname.split("edit")[0];
 
   useEffect(() => {
-    if (authId !== id) navigate("/");
+    if (authId !== id) {
+      navigate(redirectLocation);
+      alert("편집 권한이 없습니다.");
+    }
   }, []);
 
   const { loading, data } = useAsync(getRecipientRead, { id });
