@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Index from "./pages/Index";
 import RollingPaperPage from "./pages/RollingPaperPage";
 import RollingPaperEditPage from "./pages/RollingPaperEditPage";
 import LandingPage from "./pages/LandingPage";
@@ -13,7 +12,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="list" element={<CardListPage />} /* 이정윤 */ />
+        <Route path="list" element={<CardListPage />} />
         <Route path="post" element={<CreateTo />} />
         <Route path="post/:id" element={<RollingPaperPage />} />
         <Route path="post/:id/edit" element={<RollingPaperEditPage />} />
