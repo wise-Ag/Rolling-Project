@@ -11,8 +11,9 @@ import bin from "../../../assets/images/icons/bin.svg";
 import { useLocation } from "react-router-dom";
 import { useModal } from "../../../hooks/useModal";
 import { convertDateFormat } from "../../../utils/convertDateFormat";
+import deleteRecipient from "../../../apis/deleteRecipient";
 
-const CardBody = ({ item, items, index, myRef }) => {
+const CardBody = ({ item, items, index, myRef, setItems }) => {
   const location = useLocation();
   const isEditPage = location.pathname.endsWith("edit");
   const { profileImageURL, sender, relationship, content, createdAt } = item;
@@ -23,9 +24,26 @@ const CardBody = ({ item, items, index, myRef }) => {
 
   const { isModalVisible, openModalFunc, closeModalFunc } = useModal();
 
-  const handleDelete = () => {
-    // 카드 삭제하는 코드
-    console.log("삭제되었습니다.");
+  const handleDeleteCard = async (event) => {
+    // 이벤트 버블링 방지
+    event.stopPropagation();
+
+    // 삭제 확인
+    if (!window.confirm("카드를 삭제하시겠습니까?")) {
+      return;
+    }
+
+    try {
+      // 서버에 삭제 요청
+      await deleteRecipient({ id: item.id });
+
+      // 화면에서 카드 삭제
+      setItems((prevCards) => prevCards.filter((card) => card.id !== item.id));
+
+      console.log("카드가 삭제되었습니다.");
+    } catch (error) {
+      console.error("카드를 삭제하는 데 실패했습니다.", error);
+    }
   };
 
   return (
@@ -36,7 +54,7 @@ const CardBody = ({ item, items, index, myRef }) => {
             <CardProfileImage profileImageURL={profileImageURL} />
             <CardProfile sender={sender} relationship={relationship} />
             {isEditPage && (
-              <Button onClick={handleDelete}>
+              <Button onClick={handleDeleteCard}>
                 <img className={style.bin} src={bin} alt="bin" />
               </Button>
             )}
