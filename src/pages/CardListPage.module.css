@@ -14,7 +14,6 @@
 
 .listName {
   /* Font/24 Bold */
-  font-family: Pretendard;
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 3.6rem; /* 150% */
@@ -28,7 +27,6 @@
   justify-content: center;
   width: 113.6rem;
   height: 26rem;
-  font-family: Pretendard;
   font-size: 2.4rem;
   font-weight: 700;
   color: #919191;
