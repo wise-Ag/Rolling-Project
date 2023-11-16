@@ -13,7 +13,7 @@ const CardListPage = () => {
     <>
       <Header
         button={
-          <Button color={"outlined"} size={"40"}>
+          <Button as="Link" to="/post" color="outlined" size="40">
             롤링 페이퍼 만들기
           </Button>
         }
@@ -37,7 +37,13 @@ const CardListPage = () => {
             )}
           </div>
         </div>
-        <Button shape={"primary"} size={"56"} width={"28"}>
+        <Button
+          as={"Link"}
+          to={"/post"}
+          shape={"primary"}
+          size={"56"}
+          width={"28"}
+        >
           나도 만들어보기
         </Button>
       </div>
