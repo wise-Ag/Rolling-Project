@@ -32,6 +32,7 @@ const CardList = ({
               backgroundImageURL,
               messageCount,
               recentMessages,
+              topReactions,
             }) => {
               const profileImageURLs = recentMessages.map(
                 (message) => message.profileImageURL,
@@ -46,6 +47,7 @@ const CardList = ({
                     backgroundImageURL={backgroundImageURL}
                     messageCount={messageCount}
                     profileImageURLs={profileImageURLs}
+                    emojiData={topReactions}
                   />
                 </li>
               );

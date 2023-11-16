@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import CardList from "./CardList";
 
-const CARD_MARGIN = 28;
+const CARD_MARGIN = 36;
 
 const isTabletOrMobile = window.innerWidth <= 1199;
 
