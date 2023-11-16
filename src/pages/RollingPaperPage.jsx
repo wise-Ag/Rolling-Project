@@ -22,7 +22,6 @@ const PostPage = () => {
     backgroundColor,
     backgroundImageURL,
   } = data;
-
   const getAuthorizeright = (id) => {
     if (value === id) {
       localStorage.setItem("ID", id);
@@ -31,6 +30,7 @@ const PostPage = () => {
   useEffect(() => {
     getAuthorizeright(id);
   }, []);
+
   const recentProfileImg = recentMessages
     ? recentMessages.map((value) => value.profileImageURL)
     : [
