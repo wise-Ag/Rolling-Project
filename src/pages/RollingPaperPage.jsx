@@ -8,7 +8,6 @@ import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 import { Navigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
-import postRecipientMessage from "../apis/postRecipientMessage";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -21,13 +20,6 @@ const PostPage = () => {
     backgroundImageURL,
   } = data;
 
-  useAsync(postRecipientMessage, {
-    recipientId: "488",
-    sender: "test14",
-    profileImageURL:
-      "https://cdn.pixabay.com/photo/2017/11/05/08/38/christmas-2919725_640.jpg",
-    content: "test14",
-  });
   const recentProfileImg = recentMessages
     ? recentMessages.map((value) => value.profileImageURL)
     : [
@@ -45,7 +37,7 @@ const PostPage = () => {
     return <Navigate to="/" />;
   }
   return (
-    <LocaleContext.Provider value={{ name: name }}>
+    <LocaleContext.Provider value={{ id: id, name: name }}>
       <div className={style.root}>
         <Header />
         <HeaderService

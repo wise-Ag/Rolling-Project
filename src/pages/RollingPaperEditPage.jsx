@@ -78,7 +78,7 @@ const RollingPaperEditPage = () => {
     return <Navigate to="/" />;
   }
   return (
-    <LocaleContext.Provider value={{ name: name }}>
+    <LocaleContext.Provider value={{ id: id, name: name }}>
       <div className={style.root}>
         <Header />
         <HeaderService
@@ -93,9 +93,11 @@ const RollingPaperEditPage = () => {
           })}
           style={background}
         >
-          <Button className={style.deleteButton} onClick={handleDeletePage}>
-            삭제하기
-          </Button>
+          <div className={style.buttonContainer}>
+            <Button className={style.deleteButton} onClick={handleDeletePage}>
+              삭제하기
+            </Button>
+          </div>
           <Cards />
         </div>
       </div>

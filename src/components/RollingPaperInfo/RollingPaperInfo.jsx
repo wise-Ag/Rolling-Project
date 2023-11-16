@@ -17,8 +17,14 @@ const RollingPaperInfo = ({
 }) => {
   return (
     <div className={clsx(styles.container, styles[style])}>
-      <div>
-        <h1 className={clsx(styles.name, hasBackgroundImage && styles.white)}>
+      <div className={styles.wrapper}>
+        <h1
+          className={clsx(
+            styles.name,
+            hasBackgroundImage && styles.white,
+            styles[style],
+          )}
+        >
           To. {recipientName}
         </h1>
       </div>

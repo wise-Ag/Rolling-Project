@@ -3,15 +3,13 @@ import Button from "../components/Button/Button";
 import style from "./LandingPage.module.css";
 import point1 from "../assets/images/etc/point1.svg";
 import point2 from "../assets/images/etc/point2.svg";
-
-import { useNavigate } from "react-router-dom";
 const LandingPage = () => {
-  const navigate = useNavigate();
   const headerButton = (
-    <Button color="outlined" size="40" onClick={() => navigate("/post")}>
-      롤링페이퍼만들기
+    <Button as="Link" to="/post" color="outlined" size="40">
+      {localStorage.getItem("ID") ? "나의 롤링 페이퍼" : "롤링 페이퍼 만들기"}
     </Button>
   );
+
   return (
     <>
       <Header button={headerButton}></Header>
@@ -47,10 +45,11 @@ const LandingPage = () => {
           </div>
         </div>
         <Button
+          as="Link"
+          to="/list"
           className={style.button}
           color="primary"
           size="56"
-          onClick={() => navigate("/list")}
         >
           구경해보기
         </Button>

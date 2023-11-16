@@ -69,7 +69,6 @@ const CreateFrom = () => {
   return (
     <>
       <Header></Header>
-
       <div className={styles.root}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
