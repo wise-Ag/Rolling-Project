@@ -136,8 +136,20 @@
   .verticalLineWrapper {
     display: none;
   }
+
   .button {
     width: 3.6rem;
     height: 3.2rem;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .buttonsContainer button span {
+    display: none;
   }
 }

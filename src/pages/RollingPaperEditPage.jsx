@@ -14,7 +14,7 @@ import Cards from "../components/Cards/Cards";
 import Button from "../components/Button/Button";
 import deleteRecipient from "../apis/deleteRecipient";
 import LocaleContext from "../contexts/LocaleContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const RollingPaperEditPage = () => {
   const { id } = useParams();
@@ -22,12 +22,20 @@ const RollingPaperEditPage = () => {
   const authId = localStorage.getItem("ID");
   const currentLocation = useLocation();
   const redirectLocation = currentLocation.pathname.split("edit")[0];
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
   useEffect(() => {
     if (authId !== id) {
       navigate(redirectLocation);
       alert("편집 권한이 없습니다.");
     }
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 767);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const { loading, data } = useAsync(getRecipientRead, { id });
@@ -80,7 +88,7 @@ const RollingPaperEditPage = () => {
   return (
     <LocaleContext.Provider value={{ id: id, name: name }}>
       <div className={style.root}>
-        <Header />
+        <Header isNotMobileVisible={!isMobile} />
         <HeaderService
           recipientId={id}
           recipientName={name}
