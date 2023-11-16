@@ -9,8 +9,10 @@ import Cards from "../components/Cards/Cards";
 import { Navigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
 import { useEffect } from "react";
+import useAuth from "../hooks/useAuth";
 
 const PostPage = () => {
+  const { value } = useAuth();
   const { id } = useParams();
   const { loading, data } = useAsync(getRecipientRead, { id });
   const {
@@ -22,13 +24,13 @@ const PostPage = () => {
   } = data;
 
   const getAuthorizeright = (id) => {
-    localStorage.setItem("ID", id);
+    if (value === id) {
+      localStorage.setItem("ID", id);
+    }
   };
-
   useEffect(() => {
     getAuthorizeright(id);
   }, []);
-
   const recentProfileImg = recentMessages
     ? recentMessages.map((value) => value.profileImageURL)
     : [
