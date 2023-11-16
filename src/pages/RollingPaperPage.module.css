@@ -1,7 +1,7 @@
 .cardSection {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   padding-top: 12rem;
   padding-bottom: 12rem;
@@ -37,7 +37,7 @@
 
 .buttonContainer {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 1.6rem;
   width: 100%;
   max-width: 120rem;
