@@ -106,7 +106,7 @@ const CreateFrom = () => {
             <Dropdown option={font} />
           </div>
           <Button
-            disabled={isLoading && inputFrom.value && markDownInput.value}
+            disabled={isLoading || !inputFrom.value || !markDownInput.value}
             className={styles.button}
             shape="block"
             color="primary"
