@@ -16,6 +16,7 @@ import { useToast } from "../../hooks/useToast";
 import { useKaKao } from "../../hooks/useKaKao";
 import KaKaoshareController from "../../controller/KaKaoShareController";
 import { copyClipBoard } from "../../utils/copyToClipboard";
+import useWindowWidthCheck from "./../../hooks/useWindowWidthCheck";
 
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
@@ -36,8 +37,7 @@ const HeaderService = ({
   const [isSharePopover, setSharePopover] = useState(false);
   const [isEmojiPopoverOpen, setEmojiPopoverOpen] = useState(false);
   const { isToastPop, openToast, closeToast } = useToast();
-  const isMobile = window.innerWidth <= 767;
-
+  const isMobile = useWindowWidthCheck(767);
   const myRef = useRef();
   const handleButtonClick = () => {
     setEmojiPopoverOpen(!isEmojiPopoverOpen);

@@ -1,25 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 
 import CardList from "./CardList";
+import useWindowWidthCheck from "../../hooks/useWindowWidthCheck";
 
 const CARD_MARGIN = 36;
 
-const isTabletOrMobile = window.innerWidth <= 1199;
-
-const getVisibleCardCount = (data) => {
+const getVisibleCardCount = (size, data) => {
   // 테블릿 및 모바일 사이즈에 따라 다른 가시 카드 수를 반환
-  return isTabletOrMobile
+  return size
     ? Math.min(data.length / 1.9, data.length)
     : Math.min(3.9, data.length);
 };
 
 const calculateTransform = (
+  size,
   currentIndex,
   containerWidth,
   visibleCount,
   deltaX = 0,
 ) => {
-  const cardWidth = isTabletOrMobile
+  const cardWidth = size
     ? Math.trunc(containerWidth / visibleCount) + CARD_MARGIN
     : Math.trunc(containerWidth / visibleCount);
 
@@ -29,6 +29,7 @@ const calculateTransform = (
 const CardListContainer = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(0);
+  const isTabletOrMobile = useWindowWidthCheck(1199);
 
   const containerRef = useRef();
 
@@ -40,7 +41,7 @@ const CardListContainer = ({ data }) => {
     const touchX = e.touches[0].clientX;
     const deltaX = touchX - startX;
     const containerWidth = containerRef.current.offsetWidth;
-    const visibleCount = getVisibleCardCount(data);
+    const visibleCount = getVisibleCardCount(isTabletOrMobile, data);
 
     // 처음 또는 마지막 카드에서 더 이상 스크롤하지 못하도록 설정
     if (
@@ -61,6 +62,7 @@ const CardListContainer = ({ data }) => {
 
     // 변환 계산 함수를 사용하여 현재 인덱스와 조정된 deltaX를 기반으로 새로운 transform 설정
     containerRef.current.style.transform = calculateTransform(
+      isTabletOrMobile,
       currentIndex,
       containerWidth,
       visibleCount,
@@ -70,7 +72,7 @@ const CardListContainer = ({ data }) => {
 
   const handleTouchEnd = (e) => {
     const containerWidth = containerRef.current.offsetWidth;
-    const visibleCount = getVisibleCardCount(data);
+    const visibleCount = getVisibleCardCount(isTabletOrMobile, data);
     const newTouchEndX = e.changedTouches[0].clientX;
     const threshold = containerWidth / 100;
 
@@ -104,9 +106,10 @@ const CardListContainer = ({ data }) => {
   // 컴포넌트가 렌더링될 때 초기 위치 설정
   useEffect(() => {
     const containerWidth = containerRef.current.offsetWidth;
-    const visibleCount = getVisibleCardCount(data);
+    const visibleCount = getVisibleCardCount(isTabletOrMobile, data);
 
     containerRef.current.style.transform = calculateTransform(
+      isTabletOrMobile,
       currentIndex,
       containerWidth,
       visibleCount,
