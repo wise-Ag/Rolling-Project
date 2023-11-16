@@ -60,3 +60,10 @@
   font-display: swap;
   src: url("../fonts/NotoSans/NotoSansKR-Thin.ttf");
 }
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Poppins/Poppins-Bold.ttf");
+}

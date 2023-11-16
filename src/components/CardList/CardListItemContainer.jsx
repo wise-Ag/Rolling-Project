@@ -1,4 +1,3 @@
-import useEmoji from "../../hooks/useEmoji";
 import CardListItem from "./CardListItem";
 
 const CardListItemContainer = ({
@@ -8,9 +7,8 @@ const CardListItemContainer = ({
   backgroundImageURL,
   messageCount,
   profileImageURLs,
+  emojiData,
 }) => {
-  const emojiData = useEmoji(recipientId);
-
   const hasBackgroundImage = !!backgroundImageURL;
 
   const backgroundImageStyle = backgroundImageURL
