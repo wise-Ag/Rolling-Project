@@ -39,11 +39,6 @@ function CreateTo() {
       backgroundImageURL: imgOpt,
     };
 
-    if (dataset.name === "") {
-      inputTo.handleBlur();
-      return;
-    }
-
     try {
       setIsloading(true);
       await auth.tryLogin(dataset);
@@ -96,7 +91,7 @@ function CreateTo() {
             )}
           </div>
           <Button
-            disabled={isLoading}
+            disabled={isLoading && inputTo.value}
             className={styles.button}
             shape="block"
             color="primary"

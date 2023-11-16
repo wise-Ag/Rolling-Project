@@ -58,11 +58,6 @@ const CreateFrom = () => {
       font: font.value,
     };
 
-    if (dataset.sender === "") {
-      inputFrom.handleBlur();
-      return;
-    }
-
     try {
       setIsloading(true);
       await auth.tryMessage(dataset);
@@ -111,7 +106,7 @@ const CreateFrom = () => {
             <Dropdown option={font} />
           </div>
           <Button
-            disabled={isLoading}
+            disabled={isLoading && inputFrom.value && markDownInput.value}
             className={styles.button}
             shape="block"
             color="primary"
