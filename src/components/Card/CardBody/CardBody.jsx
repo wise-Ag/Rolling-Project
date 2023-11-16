@@ -13,7 +13,7 @@ import { useModal } from "../../../hooks/useModal";
 import { convertDateFormat } from "../../../utils/convertDateFormat";
 import deleteMessage from "../../../apis/deleteMessage";
 
-const CardBody = ({ item, items, index, myRef, setItems }) => {
+const CardBody = ({ item, setItems }) => {
   const location = useLocation();
   const isEditPage = location.pathname.endsWith("edit");
   const { profileImageURL, sender, relationship, content, createdAt } = item;
@@ -61,7 +61,6 @@ const CardBody = ({ item, items, index, myRef, setItems }) => {
           <div className={style.divider}></div>
           <CardContent content={content} />
           <CardDate createdAt={prettyCreatedAt} />
-          {index === items?.length - 1 && <p ref={myRef}></p>}
         </Card>
       </div>
       {isModalVisible && (
