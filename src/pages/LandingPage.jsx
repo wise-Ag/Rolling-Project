@@ -9,7 +9,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const headerButton = (
     <Button color="outlined" size="40" onClick={() => navigate("/post")}>
-      롤링페이퍼만들기
+      롤링 페이퍼 만들기
     </Button>
   );
   return (
