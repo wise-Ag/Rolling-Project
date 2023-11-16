@@ -33,7 +33,7 @@ const RollingPaperEditPage = () => {
 
   useEffect(() => {
     function checkMobile() {
-      setIsMobile(window.innerWidth <= 767); // 767px 이하면 모바일로 판단
+      setIsMobile(window.innerWidth <= 767);
     }
     checkMobile();
     window.addEventListener("resize", checkMobile);
