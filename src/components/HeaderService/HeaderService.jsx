@@ -115,6 +115,7 @@ const HeaderService = ({
                 <Button
                   color={"outlined"}
                   size={36}
+                  mobile={true}
                   onClick={handleButtonClick}
                 >
                   <img src={EmojiAddImage} alt="이모지 추가 이미지" />
@@ -128,7 +129,12 @@ const HeaderService = ({
               className={styles.shareButtonContainer}
               onBlur={handleShareBlur}
             >
-              <Button color={"outlined"} size={36} onClick={handleShareClick}>
+              <Button
+                color={"outlined"}
+                size={36}
+                mobile={true}
+                onClick={handleShareClick}
+              >
                 <img src={shareImage} alt="공유 이미지" />
               </Button>
               {isSharePopover && (
