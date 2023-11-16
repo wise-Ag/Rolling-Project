@@ -1,11 +1,12 @@
 import { useState } from "react";
 import styles from "./ToggleButton.module.css";
 
-const ToggleButton = ({ toggle, setToggle }) => {
+const ToggleButton = ({ toggle, setToggle, onHandle }) => {
   const [antiToggle, setAntiToggle] = useState(false);
   const handleToggleButtonClick = () => {
     setToggle((curr) => !curr);
     setAntiToggle((curr) => !curr);
+    onHandle();
   };
 
   return (

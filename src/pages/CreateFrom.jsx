@@ -27,7 +27,7 @@ const CreateFrom = () => {
 
   const font = useDropdown({
     init: "Noto Sans",
-    arr: ["Noto Sans", "Pretendard", "Nanum Gothic"],
+    arr: ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"],
   });
 
   const relation = useDropdown({
@@ -58,11 +58,6 @@ const CreateFrom = () => {
       font: font.value,
     };
 
-    if (dataset.sender === "") {
-      inputFrom.handleBlur();
-      return;
-    }
-
     try {
       setIsloading(true);
       await auth.tryMessage(dataset);
@@ -73,7 +68,8 @@ const CreateFrom = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header isNotMobileVisible={false} />
+
       <div className={styles.root}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
@@ -110,8 +106,7 @@ const CreateFrom = () => {
             <Dropdown option={font} />
           </div>
           <Button
-            disabled={isLoading}
-            className={styles.button}
+            disabled={isLoading || !inputFrom.value || !markDownInput.value}
             shape="block"
             color="primary"
             size="56"
