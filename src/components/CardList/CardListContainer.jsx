@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from "react";
 
 import CardList from "./CardList";
 
-const isTabletorMobile = window.innerWidth <= 1199;
+const CARD_MARGIN = 28;
+
+const isTabletOrMobile = window.innerWidth <= 1199;
 
 const getVisibleCardCount = (data) => {
   // 테블릿 및 모바일 사이즈에 따라 다른 가시 카드 수를 반환
-  return isTabletorMobile
+  return isTabletOrMobile
     ? Math.min(data.length / 1.9, data.length)
     : Math.min(3.9, data.length);
 };
@@ -17,7 +19,10 @@ const calculateTransform = (
   visibleCount,
   deltaX = 0,
 ) => {
-  const cardWidth = containerWidth / visibleCount;
+  const cardWidth = isTabletOrMobile
+    ? Math.trunc(containerWidth / visibleCount) + CARD_MARGIN
+    : Math.trunc(containerWidth / visibleCount);
+
   return `translateX(${-currentIndex * cardWidth + deltaX}px)`;
 };
 
