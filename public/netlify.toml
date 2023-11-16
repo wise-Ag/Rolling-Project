@@ -12,7 +12,7 @@
   to = "/post"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-  headers = {X-From = "Netlify"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
 
 [[redirects]]
   from = "/post/:id"
