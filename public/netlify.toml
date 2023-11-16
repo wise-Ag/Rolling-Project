@@ -39,7 +39,7 @@
 
 [[redirects]]
   from = "/test"
-  to = "/list"
+  to = "/"
   status = 301
   force = false
   query = {path = ":path"}
