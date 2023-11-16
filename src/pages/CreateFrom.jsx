@@ -68,7 +68,7 @@ const CreateFrom = () => {
 
   return (
     <>
-      <Header isNotMobileVisible={false} />
+      <Header isNotMobileVisible={true} />
 
       <div className={styles.root}>
         <form className={styles.form} onSubmit={handleSubmit}>

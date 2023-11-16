@@ -8,7 +8,7 @@ import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 import { Navigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
-import { useEffect, useState } from "react";
+import useWindowWidthCheck from "../hooks/useWindowWidthCheck";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -20,14 +20,7 @@ const PostPage = () => {
     backgroundColor,
     backgroundImageURL,
   } = data;
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 767);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const isMobile = useWindowWidthCheck(767);
 
   const recentProfileImg = recentMessages
     ? recentMessages.map((value) => value.profileImageURL)
@@ -48,7 +41,7 @@ const PostPage = () => {
   return (
     <LocaleContext.Provider value={{ id: id, name: name }}>
       <div className={style.root}>
-        <Header isNotMobileVisible={!isMobile} />
+        <Header isNotMobileVisible={isMobile} />
         <HeaderService
           recipientId={id}
           recipientName={name}
