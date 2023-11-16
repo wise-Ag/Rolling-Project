@@ -16,7 +16,6 @@ const useAuth = () => {
 
   // 지금 로그인이 되어있는지 확인해야할 때
   const isAuth = () => {
-    setValue(getItem);
     if (value) return true;
   };
 
@@ -60,9 +59,9 @@ const useAuth = () => {
   };
 
   return {
-    id,
-    value,
-    setValue,
+    id, // useParams
+    value, // state
+    setValue, // setState
     isAuth,
     redirectTo,
     redirectFrom,
