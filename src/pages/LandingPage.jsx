@@ -3,7 +3,6 @@ import Button from "../components/Button/Button";
 import style from "./LandingPage.module.css";
 import point1 from "../assets/images/etc/point1.svg";
 import point2 from "../assets/images/etc/point2.svg";
-
 import { useNavigate } from "react-router-dom";
 const LandingPage = () => {
   const navigate = useNavigate();

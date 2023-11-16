@@ -78,7 +78,7 @@ const RollingPaperEditPage = () => {
     return <Navigate to="/" />;
   }
   return (
-    <LocaleContext.Provider value={{ name: name }}>
+    <LocaleContext.Provider value={{ id: id, name: name }}>
       <div className={style.root}>
         <Header />
         <HeaderService
