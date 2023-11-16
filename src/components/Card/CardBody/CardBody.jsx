@@ -32,7 +32,6 @@ const CardBody = ({ item, items, index, myRef, setItems }) => {
     if (!window.confirm("카드를 삭제하시겠습니까?")) {
       return;
     }
-
     try {
       // 서버에 삭제 요청
       await deleteMessage({ id: item.id });
