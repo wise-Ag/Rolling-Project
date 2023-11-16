@@ -14,7 +14,9 @@ const CardListPage = () => {
       <Header
         button={
           <Button as="Link" to="/post" color="outlined" size="40">
-            롤링 페이퍼 만들기
+            {localStorage.getItem("ID")
+              ? "나의 롤링 페이퍼"
+              : "롤링 페이퍼 만들기"}
           </Button>
         }
       />
@@ -23,7 +25,7 @@ const CardListPage = () => {
           <div className={styles.container}>
             <h2 className={styles.listName}>인기 롤링페이퍼 🔥</h2>
             {isLoading ? (
-              <p>Loading...</p>
+              <p className={styles.loading}>Loading...</p>
             ) : (
               <CardListContainer data={popular} />
             )}
@@ -31,7 +33,7 @@ const CardListPage = () => {
           <div className={styles.container}>
             <h2 className={styles.listName}>최근에 만든 롤링 페이퍼 ⭐️️</h2>
             {isLoading ? (
-              <p>Loading...</p>
+              <p className={styles.loading}>Loading...</p>
             ) : (
               <CardListContainer data={recent} />
             )}
@@ -44,7 +46,7 @@ const CardListPage = () => {
           size={"56"}
           width={"28"}
         >
-          나도 만들어보기
+          {localStorage.getItem("ID") ? "나의 롤링 페이퍼" : "나도 만들어보기"}
         </Button>
       </div>
     </>

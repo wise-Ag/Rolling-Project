@@ -7,7 +7,7 @@ import point2 from "../assets/images/etc/point2.svg";
 const LandingPage = () => {
   const headerButton = (
     <Button as="Link" to="/post" color="outlined" size="40">
-      롤링 페이퍼 만들기
+      {localStorage.getItem("ID") ? "나의 롤링 페이퍼" : "롤링 페이퍼 만들기"}
     </Button>
   );
 
