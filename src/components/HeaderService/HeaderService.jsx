@@ -49,7 +49,7 @@ const HeaderService = ({
 
   const updateEmojiData = async () => {
     try {
-      const response = await getRecipientReactions({ recipientId, limit: "6" });
+      const response = await getRecipientReactions({ recipientId, limit: "8" });
 
       if (response.result.results) {
         setEmojiData(() =>
