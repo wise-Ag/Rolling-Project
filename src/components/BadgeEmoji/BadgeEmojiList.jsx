@@ -27,7 +27,7 @@ const BadgeEmojiList = ({ emojis, isVisibleButton = true }) => {
   };
 
   useEffect(() => {
-    setEmojiData([emojis.slice(0, 3), emojis.slice(0, 6)]);
+    setEmojiData([emojis.slice(0, 3), emojis.slice(0, 8)]);
   }, [emojis]);
 
   return (
