@@ -28,7 +28,7 @@ const EmojiPickerPopover = ({
     };
     document.addEventListener("click", clickFunc);
     return () => {
-      document.addEventListener("click", clickFunc);
+      document.removeEventListener("click", clickFunc);
     };
   }, [myRef.current]);
 
