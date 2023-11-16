@@ -229,3 +229,10 @@
   padding-right: 0.8rem !important;
   padding-left: 0.8rem !important;
 }
+
+@media (max-width: 767px) {
+  .mobile {
+    padding-right: 0.8rem !important;
+    padding-left: 0.8rem !important;
+  }
+}
