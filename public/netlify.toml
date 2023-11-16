@@ -36,3 +36,11 @@
   force = false
   query = {id = ":id"}
   conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
+
+[[redirects]]
+  from = "/test"
+  to = "/list"
+  status = 301
+  force = false
+  query = {path = ":path"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
