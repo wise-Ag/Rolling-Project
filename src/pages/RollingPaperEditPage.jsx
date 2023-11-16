@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   useParams,
   useNavigate,
@@ -14,7 +15,7 @@ import Cards from "../components/Cards/Cards";
 import Button from "../components/Button/Button";
 import deleteRecipient from "../apis/deleteRecipient";
 import LocaleContext from "../contexts/LocaleContext";
-import { useEffect, useState } from "react";
+import useWindowWidthCheck from "../hooks/useWindowWidthCheck";
 
 const RollingPaperEditPage = () => {
   const { id } = useParams();
@@ -22,20 +23,13 @@ const RollingPaperEditPage = () => {
   const authId = localStorage.getItem("ID");
   const currentLocation = useLocation();
   const redirectLocation = currentLocation.pathname.split("edit")[0];
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const isMobile = useWindowWidthCheck(767);
 
   useEffect(() => {
     if (authId !== id) {
       navigate(redirectLocation);
       alert("편집 권한이 없습니다.");
     }
-  }, []);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 767);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const { loading, data } = useAsync(getRecipientRead, { id });
@@ -88,7 +82,7 @@ const RollingPaperEditPage = () => {
   return (
     <LocaleContext.Provider value={{ id: id, name: name }}>
       <div className={style.root}>
-        <Header isNotMobileVisible={!isMobile} />
+        <Header isNotMobileVisible={isMobile} />
         <HeaderService
           recipientId={id}
           recipientName={name}
