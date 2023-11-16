@@ -33,7 +33,6 @@ const useAuth = () => {
 
   // 내 페이지에서 나에게 메세지 못 보내도록 리다이렉트
   const redirectFrom = () => {
-    setValue(getItem);
     if (value === id) {
       navigateToPostID(value);
     }
