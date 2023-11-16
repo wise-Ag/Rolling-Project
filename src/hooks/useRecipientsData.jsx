@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import getRecipientsList from "../apis/getRecipientsList";
 
-const MIN_MESSAGE_COUNT = 1;
+const MIN_MESSAGE_COUNT = 5; // 최소 5개 메시지가 있는 롤링페이퍼만 필터링하도록 설정
+const DAYS_TO_FILTER = 3; // 최근 3일 데이터만 필터링하도록 설정
 
 const sortDataByMessageCount = (data) => {
   return [...data]
@@ -10,9 +11,14 @@ const sortDataByMessageCount = (data) => {
 };
 
 const sortDataByDate = (data) => {
-  return [...data].sort(
-    (a, b) => (new Date(b?.createdAt) || 0) - (new Date(a?.createdAt) || 0),
+  const currentDate = new Date();
+  const filterDate = currentDate.setDate(
+    currentDate.getDate() - DAYS_TO_FILTER,
   );
+
+  return [...data]
+    .filter((value) => new Date(value?.createdAt) >= filterDate)
+    .sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt));
 };
 
 /**
@@ -29,7 +35,10 @@ const useRecipientsData = () => {
 
   const fetchData = async () => {
     try {
-      const response = await getRecipientsList({ limit: "100" });
+      const initialResponse = await getRecipientsList({ limit: 1 });
+      const count = (await initialResponse?.result?.count) || 0;
+
+      const response = await getRecipientsList({ limit: count });
       const responseData = response?.result?.results || [];
 
       const sortedPopularData = sortDataByMessageCount(responseData);
