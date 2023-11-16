@@ -93,9 +93,11 @@ const RollingPaperEditPage = () => {
           })}
           style={background}
         >
-          <Button className={style.deleteButton} onClick={handleDeletePage}>
-            삭제하기
-          </Button>
+          <div className={style.buttonContainer}>
+            <Button className={style.deleteButton} onClick={handleDeletePage}>
+              삭제하기
+            </Button>
+          </div>
           <Cards />
         </div>
       </div>
