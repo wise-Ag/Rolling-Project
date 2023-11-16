@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const useScroll = () => {
-  const [Isvisible, setIsVisible] = useState();
+  const [Isvisible, setIsVisible] = useState(false);
   const myRef = useRef();
 
-  const createObserver = new IntersectionObserver((entries) => {
-    const entry = entries[0];
-    setIsVisible(entry.isIntersecting);
-  });
-
-  const observer = useMemo(() => createObserver, [Isvisible]);
+  const observer = useMemo(() => {
+    return new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      setIsVisible(entry.isIntersecting);
+    });
+  }, []);
   useEffect(() => {
     if (myRef.current) {
       observer.observe(myRef.current);
@@ -21,6 +21,7 @@ const useScroll = () => {
 
   return {
     Isvisible,
+    setIsVisible,
     myRef,
   };
 };
