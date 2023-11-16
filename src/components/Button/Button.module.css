@@ -226,6 +226,6 @@
 }
 
 .mobile {
-  padding-right: 0.8rem;
-  padding-left: 0.8rem;
+  padding-right: 0.8rem !important;
+  padding-left: 0.8rem !important;
 }
