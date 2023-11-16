@@ -17,7 +17,7 @@ function CreateTo() {
   });
 
   // 색상과 이미지 배경값을 받아오는 용도
-  const [imgOpt, setImgOpt] = useState();
+  const [imgOpt, setImgOpt] = useState("");
   const [colorOpt, setColorOpt] = useState("beige");
 
   const [isLoading, setIsloading] = useState(false);
@@ -25,6 +25,12 @@ function CreateTo() {
   const [toggle, setToggle] = useState(true);
 
   const auth = useAuth();
+
+  const handleFirstToggle = () => {
+    if (imgOpt === "") {
+      setImgOpt(data.imageUrls[0]);
+    }
+  };
 
   useEffect(() => {
     auth.redirectTo();
@@ -39,11 +45,6 @@ function CreateTo() {
       backgroundImageURL: imgOpt,
     };
 
-    if (dataset.name === "") {
-      inputTo.handleBlur();
-      return;
-    }
-
     try {
       setIsloading(true);
       await auth.tryLogin(dataset);
@@ -57,7 +58,8 @@ function CreateTo() {
 
   return (
     <>
-      <Header></Header>
+      <Header isNotMobileVisible={false} />
+
       <div className={styles.root}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
@@ -79,7 +81,11 @@ function CreateTo() {
               컬러를 선택하거나, 이미지를 선택할 수 있습니다.
             </p>
 
-            <ToggleButton toggle={toggle} setToggle={setToggle} />
+            <ToggleButton
+              toggle={toggle}
+              setToggle={setToggle}
+              onHandle={handleFirstToggle}
+            />
 
             {toggle ? (
               <Background
@@ -96,8 +102,7 @@ function CreateTo() {
             )}
           </div>
           <Button
-            disabled={isLoading}
-            className={styles.button}
+            disabled={isLoading || !inputTo.value}
             shape="block"
             color="primary"
             size="56"

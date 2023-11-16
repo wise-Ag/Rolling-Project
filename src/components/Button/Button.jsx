@@ -10,6 +10,7 @@ const Button = ({
   direction,
   color,
   size,
+  mobile,
   width,
   children,
   onClick,
@@ -24,6 +25,7 @@ const Button = ({
     styles[`${direction}Arrow`],
     styles[`${color}`],
     styles[`size${size}`],
+    mobile ? styles.mobile : "",
     className,
   );
 

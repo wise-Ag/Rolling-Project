@@ -16,7 +16,6 @@ const useAuth = () => {
 
   // 지금 로그인이 되어있는지 확인해야할 때
   const isAuth = () => {
-    setValue(getItem);
     if (value) return true;
   };
 
@@ -34,7 +33,6 @@ const useAuth = () => {
 
   // 내 페이지에서 나에게 메세지 못 보내도록 리다이렉트
   const redirectFrom = () => {
-    setValue(getItem);
     if (value === id) {
       navigateToPostID(value);
     }
@@ -60,9 +58,9 @@ const useAuth = () => {
   };
 
   return {
-    id,
-    value,
-    setValue,
+    id, // useParams
+    value, // state
+    setValue, // setState
     isAuth,
     redirectTo,
     redirectFrom,
