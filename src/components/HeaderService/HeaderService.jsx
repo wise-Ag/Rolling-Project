@@ -17,6 +17,8 @@ import { useKaKao } from "../../hooks/useKaKao";
 import KaKaoshareController from "../../controller/KaKaoShareController";
 import { copyClipBoard } from "../../utils/copyToClipboard";
 
+const isMobile = window.innerWidth <= 767;
+
 /**
  * 수신자 정보와 관련된 헤더 서비스 컴포넌트.
  * @param {Object} props - 컴포넌트에 전달되는 속성(props) 객체.
@@ -116,7 +118,7 @@ const HeaderService = ({
                   onClick={handleButtonClick}
                 >
                   <img src={EmojiAddImage} alt="이모지 추가 이미지" />
-                  추가
+                  {isMobile ? "" : "추가"}
                 </Button>
               }
             />

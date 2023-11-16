@@ -3,8 +3,9 @@ import CardButtonImage from "../CardImage/CardButtonImage";
 import { useParams, useLocation } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import getRecipientMessages from "../../../apis/getRecipientMessages";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CardBody from "../CardBody/CardBody";
+import useScroll from "./../../../hooks/useScroll";
 
 const CardContainer = () => {
   const LIMIT = 8;
@@ -12,9 +13,9 @@ const CardContainer = () => {
   const [offset, setOffset] = useState(8);
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
-  const [Isvisible, setIsVisible] = useState(false);
   const location = useLocation();
   const isEditPage = location.pathname.endsWith("edit");
+  const { Isvisible, setIsVisible, myRef } = useScroll();
 
   const { data } = useAsync(getRecipientMessages, {
     recipientId: id,
@@ -26,22 +27,6 @@ const CardContainer = () => {
       setItems(data.results || []);
     }
   }, [data]);
-
-  const myRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      setIsVisible(entry.isIntersecting);
-    });
-    if (myRef.current) {
-      observer.observe(myRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [items]);
 
   const fetchMoreData = async () => {
     const data = await getRecipientMessages({
@@ -85,13 +70,13 @@ const CardContainer = () => {
           <CardBody
             key={item.id}
             item={item}
-            myRef={myRef}
             index={index}
             items={items}
             setItems={setItems}
           />
         );
       })}
+      <p ref={myRef}></p>
     </>
   );
 };

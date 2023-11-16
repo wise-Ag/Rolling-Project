@@ -3,7 +3,6 @@ import Button from "../components/Button/Button";
 import style from "./LandingPage.module.css";
 import point1 from "../assets/images/etc/point1.svg";
 import point2 from "../assets/images/etc/point2.svg";
-
 const LandingPage = () => {
   const headerButton = (
     <Button as="Link" to="/post" color="outlined" size="40">
