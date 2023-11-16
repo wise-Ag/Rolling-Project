@@ -8,6 +8,7 @@ import clsx from "clsx";
 import Cards from "../components/Cards/Cards";
 import { Navigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
+import { useEffect } from "react";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -19,6 +20,14 @@ const PostPage = () => {
     backgroundColor,
     backgroundImageURL,
   } = data;
+
+  const getAuthorizeright = (id) => {
+    localStorage.setItem("ID", id);
+  };
+
+  useEffect(() => {
+    getAuthorizeright(id);
+  }, []);
 
   const recentProfileImg = recentMessages
     ? recentMessages.map((value) => value.profileImageURL)
