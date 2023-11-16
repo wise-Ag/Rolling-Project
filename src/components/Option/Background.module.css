@@ -1,8 +1,16 @@
 .container {
-  display: inline-flex;
-  gap: 1.6rem;
-  align-items: flex-start;
+  display: grid;
+  justify-content: center;
   width: 100%;
+  column-gap: 1.6rem;
+  row-gap: 1.6rem;
+  grid-template: auto/repeat(4, auto);
+  @media screen and (max-width: 1199px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 767px) {
+    grid-template: auto/repeat(2, auto);
+  }
 }
 
 .backgroundBox {
@@ -11,8 +19,6 @@
   justify-content: center;
   width: 16.8rem;
   height: 16.8rem;
-  background-position: center;
-  background-size: cover;
   cursor: pointer;
   border-radius: 1.6rem;
 }
