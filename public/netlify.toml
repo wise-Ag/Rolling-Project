@@ -1,0 +1,38 @@
+[[redirects]]
+  from = "/"
+  to = "/"
+  status = 301
+  force = false
+  query = {path = ":path"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
+
+## This rule redirects to an external API, signing requests with a secret
+[[redirects]]
+  from = "/post"
+  to = "/post"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+
+[[redirects]]
+  from = "/post/:id"
+  to = "/post/:id"
+  status = 301
+  force = true
+  query = {id = ":id"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
+
+  [[redirects]]
+  from = "/list"
+  to = "/list"
+  status = 301
+  force = false
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
+
+  [[redirects]]
+  from = "/post/:id/edit"
+  to = "/post/:id/edit"
+  status = 301
+  force = false
+  query = {id = ":id"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
