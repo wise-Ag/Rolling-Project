@@ -11,6 +11,8 @@
   justify-content: center;
   width: 16.8rem;
   height: 16.8rem;
+  background-position: center;
+  background-size: cover;
   cursor: pointer;
   border-radius: 1.6rem;
 }

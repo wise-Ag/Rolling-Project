@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button/Button";
 import Header from "../components/Header/Header";
 import Input from "../components/TextField/Input";
 import styles from "./CreateTo.module.css";
 import Background from "../components/Option/Background";
 import useAuth from "../hooks/useAuth";
-import { Navigate } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import getBackgroundImages from "../apis/getBackgroundImages";
+import useInput from "../hooks/useInput";
+import ToggleButton from "../components/Button/ToggleButton";
 
 function CreateTo() {
   // 이름 input value 추적
-  const [to, setTo] = useState("");
-
-  //  버튼 토글에 따라서 구성할 조건식
-  const [colorButton, setColorButton] = useState(true);
-  const [imgButton, setimgButton] = useState(false);
+  const inputTo = useInput({
+    errorText: "이름은 비워둘 수 없습니다",
+  });
 
   // 색상과 이미지 배경값을 받아오는 용도
   const [imgOpt, setImgOpt] = useState();
@@ -23,31 +22,25 @@ function CreateTo() {
 
   const [isLoading, setIsloading] = useState(false);
 
+  const [toggle, setToggle] = useState(true);
+
   const auth = useAuth();
 
-  if (auth.isAuth()) {
-    return <Navigate to={`/post/${auth.id}`} />;
-  }
-
-  const handleChange = (e) => {
-    setTo(e.target.value);
-  };
-
-  const handleToggleButtonClick = () => {
-    setColorButton((color) => !color);
-    setimgButton((img) => !img);
-  };
+  useEffect(() => {
+    auth.redirectTo();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const dataset = {
-      name: to,
+      name: inputTo.value,
       backgroundColor: colorOpt,
       backgroundImageURL: imgOpt,
     };
 
     if (dataset.name === "") {
+      inputTo.handleBlur();
       return;
     }
 
@@ -73,8 +66,11 @@ function CreateTo() {
             </label>
             <Input
               placeholder="받는 사람 이름을 입력해 주세요"
-              onChange={handleChange}
-              value={to}
+              onBlur={inputTo.handleBlur}
+              onFocus={inputTo.handleFocus}
+              onChange={inputTo.handleChange}
+              errorMessage={inputTo.errorMessage}
+              value={inputTo.value}
             ></Input>
           </div>
           <div>
@@ -83,24 +79,9 @@ function CreateTo() {
               컬러를 선택하거나, 이미지를 선택할 수 있습니다.
             </p>
 
-            <div className={styles.toggleButtonContainer}>
-              <button
-                className={styles.toggleButton}
-                disabled={colorButton}
-                onClick={handleToggleButtonClick}
-              >
-                색상
-              </button>
-              <button
-                className={styles.toggleButton}
-                disabled={imgButton}
-                onClick={handleToggleButtonClick}
-              >
-                이미지
-              </button>
-            </div>
+            <ToggleButton toggle={toggle} setToggle={setToggle} />
 
-            {colorButton ? (
+            {toggle ? (
               <Background
                 option={colors}
                 selectedBackground={colorOpt}
