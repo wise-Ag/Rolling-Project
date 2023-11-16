@@ -1,12 +1,12 @@
 .root {
-  margin: 5.8rem auto 0rem;
+  margin: 5.7rem auto 0rem;
+  padding: 0rem 2.4rem 2.4rem;
   width: 100%;
-  max-width: 72rem;
+  max-width: 76.8rem;
 }
 
 .form {
   display: flex;
-  gap: 5rem;
   gap: 5rem;
   flex-direction: column;
   width: 100%;
@@ -33,4 +33,22 @@
   line-height: 2.6rem; /* 162.5% */
   color: var(--gray-500, #555);
   letter-spacing: -0.016rem;
+}
+
+/* Tablet 화면 크기 (1199px 이하) */
+@media screen and (max-width: 1199px) {
+  .root {
+    margin-top: 5rem;
+  }
+}
+
+/* Mobile 화면 크기 (767px 이하) */
+@media screen and (max-width: 767px) {
+  .root {
+    padding: 0rem 2rem 2rem;
+  }
+
+  .display {
+    display: none;
+  }
 }

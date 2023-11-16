@@ -102,7 +102,6 @@ function CreateTo() {
           </div>
           <Button
             disabled={isLoading || !inputTo.value}
-            className={styles.button}
             shape="block"
             color="primary"
             size="56"

@@ -107,7 +107,6 @@ const CreateFrom = () => {
           </div>
           <Button
             disabled={isLoading || !inputFrom.value || !markDownInput.value}
-            className={styles.button}
             shape="block"
             color="primary"
             size="56"
