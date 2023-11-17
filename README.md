@@ -59,9 +59,6 @@
   ```
   npm install
   ```
-
-2. 컴파일 방법
-
 - React 프로젝트는 보통 npm start 또는 yarn start 명령어로 로컬 개발 서버를 실행하고 컴파일합니다.
   ```
   npm start
@@ -124,7 +121,18 @@
 
 ## 🖼️ 결과물
 
-이 부분은 아침에 일어나서 해보겠습니다
+LandingPage<br>
+<img width="600" alt="LandingPage" src="./src/assets/images/etc/LandingPage.png"><br>
+ListPage<br>
+<img width="600" alt="ListPage" src="./src/assets/images/etc/ListPage.png"><br>
+PostPage<br>
+<img width="600" alt="PostPage" src="./src/assets/images/etc/PostPage.png"><br>
+EditPage<br>
+<img width="600" alt="EditPage" src="./src/assets/images/etc/EditPage.png"><br>
+CreateToPage<br>
+<img width="600" alt="CreateToPage" src="./src/assets/images/etc/CreateToPage.png"><br>
+CreateFromPage<br>
+<img width="600" alt="CreateFromPage" src="./src/assets/images/etc/CreateFromPage.png"><br>
 
 ## 📝 간단한 사용 방법
 
