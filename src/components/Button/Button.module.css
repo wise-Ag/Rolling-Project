@@ -102,10 +102,6 @@
   border-radius: 0.6rem;
 }
 
-.primary:disabled {
-  background-color: var(--gray-300);
-}
-
 .primary:hover {
   background-color: var(--purple-700);
 }
@@ -118,6 +114,10 @@
   border: 0.2rem solid var(--purple-900);
   outline: none;
   background-color: var(--purple-800);
+}
+
+.primary:disabled {
+  background-color: var(--gray-300);
 }
 
 .secondary {
@@ -135,12 +135,6 @@
   border-radius: 0.6rem;
 }
 
-.secondary:disabled {
-  border: none;
-  background-color: var(--gray-300);
-  color: var(--White);
-}
-
 .secondary:hover {
   border: 0.1rem solid var(--purple-700);
   background-color: var(--purple-100);
@@ -154,6 +148,12 @@
 .secondary:focus {
   border: 0.1rem solid var(--purple-800);
   outline: none;
+}
+
+.secondary:disabled {
+  border: none;
+  background-color: var(--gray-300);
+  color: var(--White);
 }
 
 .outlined {
@@ -200,11 +200,6 @@
   font-size: 1.4rem;
 }
 
-.outlined:disabled {
-  background-color: var(--gray-300);
-  color: var(--White);
-}
-
 .outlined:hover {
   background-color: var(--gray-100);
 }
@@ -216,6 +211,11 @@
 .outlined:focus {
   border: 0.1rem solid var(--gray-500);
   outline: none;
+}
+
+.outlined:disabled {
+  background-color: var(--gray-300);
+  color: var(--White);
 }
 
 .outlined.sizeicon {
