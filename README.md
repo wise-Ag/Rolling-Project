@@ -60,8 +60,6 @@
   npm install
   ```
 
-2. 컴파일 방법
-
 - React 프로젝트는 보통 npm start 또는 yarn start 명령어로 로컬 개발 서버를 실행하고 컴파일합니다.
   ```
   npm start
