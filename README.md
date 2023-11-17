@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Rolling</h1>
+<h1>🌀 Rolling 🌀</h1>
 </div>
 
 <p align="center">
@@ -12,7 +12,7 @@
 
 </div>
 
-## 팀원
+## 👥 팀원
 
 <div align="center">
 
@@ -24,17 +24,17 @@
 
 </div>
 
-## 배포 주소
+## 🌐 배포 주소
 
 > https://rollingpaper-team6.netlify.app/<br>
 
-## Prettier, ESLint, Husky
+## 🛠️ Prettier, ESLint, Husky
 
 > https://thrilling-taste-dd3.notion.site/lint-prettier-postCSS-husky-0d5929422c694d77815b638150507f9b
 
-## 프로젝트 소개
+## ℹ️ 프로젝트 소개
 
-> 이름: Rolling<br>
+> 이름: 🌀 Rolling 🌀<br>
 > 개발 기간: 2023.11.03-2023.11.18<br>
 
 롤링페이퍼라는 주제로 사람들이 서로에게 감사나 축하 또는 전달하고 싶은 메시지를 전달할 수 있는 디지털 플랫폼입니다. 사용자는 이 플랫폼을 통해 친구, 가족, 동료 등에게 마음을 전달하는 디지털 롤링페이퍼를 생성할 수 있습니다.
@@ -45,7 +45,7 @@
 
 이러한 기능들을 통해 사용자들은 감사, 축하, 응원 등의 다양한 감정을 표현하고 공유할 수 있는 공간을 가질 수 있습니다. 디지털 환경에서도 사람들이 마음을 나누는 따뜻한 순간을 만들어 주는 프로젝트입니다.
 
-## 시작 가이드
+## 🚀 시작 가이드
 
 - 프로젝트를 클론(clone)합니다
   ```
@@ -60,6 +60,8 @@
   npm install
   ```
 
+2. 컴파일 방법
+
 - React 프로젝트는 보통 npm start 또는 yarn start 명령어로 로컬 개발 서버를 실행하고 컴파일합니다.
   ```
   npm start
@@ -68,7 +70,7 @@
   yarn start
   ```
 
-## 개발 스택
+## 💻 개발 스택
 
 ![js](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white)<br>
 ![js](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)<br>
@@ -81,15 +83,50 @@
 ![js](https://img.shields.io/badge/visualstudiocode-007ACC?style=flat&logo=VisualStudioCode&logoColor=white)<br>
 ![js](https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white)<br>
 
-## 디렉토리 구조
+## 📂 디렉토리 구조
+
+```
+# 가독성을 위해 다수 생략 되었습니다.
+└── src/
+    ├── assets/
+    │   │   # 정적 에셋들이 포함되어있습니다.
+    │   ├── font/
+    │   ├── logo/
+    │   └── styles/
+    ├── apis/
+    │   │   # API 설정과 비동기 요청 함수들이 포함되어 있습니다.
+    │   ├── apiConfig.js
+    │   └── getRecipientMessages.js
+    ├── components/
+    │   │   # 각 페이지에 결합되는 컴포넌트들이 포함되어있습니다.
+    │   ├── header/
+    │   ├── BadgeEmoji/
+    │   │   ├── BadgeEmoji.jsx
+    │   │   └── BadgeEmoji.module.css
+    ├── contexts/
+    │   │   # 전역적으로 관리할 수 있는 콘텍스트가 포함되어있습니다.
+    │   └── LocaleContext.js
+    ├── hooks/
+    │   │   # 커스텀 훅이 포함되어 있습니다.
+    │   ├── useAsync.jsx
+    ├── pages/
+    │   │   # 각 페이지 단위
+    │   ├── LandingPage.jsx
+    │   └── LandingPage.module.css
+    └── utils/
+        │   # 유틸리티들이 포함되어있습니다.
+        └── convertDateFormat.js
+```
+
+## 🏗️ 프로젝트 구조 다이어그램
 
 <img width="600" alt="구조도" src="./src/assets/images/etc/construction.png">
 
-## 결과물
+## 🖼️ 결과물
 
 이 부분은 아침에 일어나서 해보겠습니다
 
-## 간단한 사용 방법
+## 📝 간단한 사용 방법
 
 - 웹사이트에 접속하여 '롤링페이퍼 생성' 버튼을 클릭합니다.
 - 배경색이나 배경 이미지를 선택하고, 롤링페이퍼 이름을 입력합니다.
